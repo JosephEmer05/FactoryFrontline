@@ -7,8 +7,7 @@ public class Turret_Aiming : MonoBehaviour
     public Transform firePoint;
     public float range = 5f;
     public float cooldown = 2f;
-    public float projectileSpeed = 5f;
-    public float rotationSpeed = 5f;
+    public float projectileSpeed = 15f;
     private float lastFireTime = 0f;
     private Transform currentTarget;
 
@@ -18,12 +17,10 @@ public class Turret_Aiming : MonoBehaviour
 
         if (currentTarget != null)
         {
-            RotateTowardsTarget(currentTarget.position);
 
             if (Time.time >= lastFireTime + cooldown)
             {
-                FireProjectile(currentTarget);
-
+                FireBullet(currentTarget);
                 lastFireTime = Time.time;
             }
         }
@@ -39,17 +36,9 @@ public class Turret_Aiming : MonoBehaviour
             .FirstOrDefault();
     }
 
-    void RotateTowardsTarget(Vector3 targetPosition)
+    void FireBullet(Transform target)
     {
-        Vector3 direction = targetPosition - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-    }
-
-    void FireProjectile(Transform target)
-    {
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-        projectile.GetComponent<Projectile>().SetDirection((target.position - firePoint.position).normalized);
+        GameObject bullet = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        bullet.GetComponent<Projectile>().SetTarget(target);
     }
 }
