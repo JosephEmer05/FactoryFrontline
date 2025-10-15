@@ -10,13 +10,16 @@ public class Projectile : MonoBehaviour
         if (target == null)
         {
             Destroy(gameObject); // Destroy missile if target died
+            return;
         }
 
-        Vector2 direction = (target.position - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), rotateSpeed * Time.deltaTime);
-        transform.rotation = rotation;
-        transform.position += transform.right * speed * Time.deltaTime;
+        // Move toward the target
+        Vector3 direction = (target.position - transform.position).normalized;
+        transform.position += direction * speed * Time.deltaTime;
+
+        // Face the direction of movement
+        if (direction != Vector3.zero)
+            transform.rotation = Quaternion.LookRotation(direction);
     }
 
     public void SetTarget(Transform newTarget)
@@ -42,16 +45,13 @@ public class Projectile : MonoBehaviour
         return closest;
     }
 
-    private void OnTriggerEnter3D(Collider2D other)
+    // 3D collision event
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-            if (target == null)
-            {
-                Destroy(gameObject); // Destroy missile if no targets are left
-            }
+            Destroy(other.gameObject); // Destroy enemy
+            Destroy(gameObject);        // Destroy projectile
         }
     }
 }
