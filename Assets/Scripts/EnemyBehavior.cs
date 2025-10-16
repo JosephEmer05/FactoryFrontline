@@ -18,13 +18,33 @@ public class EnemyBehavior : MonoBehaviour
     private bool isAttacking = false;
     private Transform targetTower;
     private Transform targetBase;
+    private Coroutine attackRoutine;
+
+    void Start()
+    {
+        StartCoroutine(ScanForTowersRoutine());
+    }
 
     void Update()
     {
-        if (isAttacking || waypoints == null || waypoints.Length == 0) return;
+        if (waypoints == null || waypoints.Length == 0) return;
 
-        MoveAlongPath();
-        DetectTargets();
+        if (!isAttacking)
+        {
+            MoveAlongPath();
+        }
+        else
+        {
+            if (targetTower != null)
+            {
+                Vector3 dir = (targetTower.position - transform.position).normalized;
+                if (dir != Vector3.zero)
+                {
+                    Quaternion lookRot = Quaternion.LookRotation(dir);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 5f);
+                }
+            }
+        }
     }
 
     public void AssignPath(Transform[] path)
@@ -35,10 +55,12 @@ public class EnemyBehavior : MonoBehaviour
 
     void MoveAlongPath()
     {
+        if (Index >= waypoints.Length) return;
+
         Transform target = waypoints[Index];
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        Vector3 direction = (target.position - transform.position).normalized;
 
+        Vector3 direction = (target.position - transform.position).normalized;
         if (direction != Vector3.zero)
         {
             Quaternion lookRotation = Quaternion.LookRotation(direction);
@@ -55,21 +77,38 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    void DetectTargets()
+    IEnumerator ScanForTowersRoutine()
     {
-        Collider[] towerHits = Physics.OverlapSphere(transform.position, atkRange, towerLayer);
-        if (towerHits.Length > 0)
+        while (true)
         {
-            targetTower = towerHits[0].transform;
-            StartCoroutine(AttackTower());
-            return;
-        }
+            if (!isAttacking)
+            {
+                Collider[] hits = Physics.OverlapSphere(transform.position, atkRange, towerLayer);
 
-        Collider[] baseHits = Physics.OverlapSphere(transform.position, atkRange, baseLayer);
-        if (baseHits.Length > 0)
-        {
-            targetBase = baseHits[0].transform;
-            StartCoroutine(AttackBase());
+                if (hits.Length > 0)
+                {
+                    float closestDist = Mathf.Infinity;
+                    Transform closestTower = null;
+
+                    foreach (Collider hit in hits)
+                    {
+                        float dist = Vector3.Distance(transform.position, hit.transform.position);
+                        if (dist < closestDist)
+                        {
+                            closestDist = dist;
+                            closestTower = hit.transform;
+                        }
+                    }
+
+                    if (closestTower != null && !isAttacking)
+                    {
+                        targetTower = closestTower;
+                        attackRoutine = StartCoroutine(AttackTower());
+                    }
+                }
+            }
+
+            yield return new WaitForSeconds(0.3f);
         }
     }
 
@@ -99,6 +138,10 @@ public class EnemyBehavior : MonoBehaviour
         }
 
         isAttacking = false;
+        attackRoutine = null;
+        targetTower = null;
+
+        yield return null;
     }
 
     IEnumerator AttackBase()
@@ -137,7 +180,10 @@ public class EnemyBehavior : MonoBehaviour
         if (baseHits.Length > 0)
         {
             targetBase = baseHits[0].transform;
-            StartCoroutine(AttackBase());
+            if (!isAttacking)
+            {
+                StartCoroutine(AttackBase());
+            }
         }
     }
 
