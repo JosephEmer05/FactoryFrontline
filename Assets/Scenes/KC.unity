@@ -821,7 +821,7 @@ Transform:
   m_GameObject: {fileID: 664565523}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.41009, y: 0.08, z: 37.43}
+  m_LocalPosition: {x: 0.01, y: 0.08, z: 2.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragGrid
   gridCellPrefab: {fileID: 7872829971212140483, guid: c229fdf527752a0449f923125558f735, type: 3}
-  cube: {fileID: 973364397958649727, guid: bc61c3437932e7b49bc2e3340ff93fd9, type: 3}
+  cube: {fileID: 841620580}
   onMousePrefab: {fileID: 0}
   uiCanvas: {fileID: 366807776}
   smoothMousePosition: {x: 0, y: 0, z: 0}
