@@ -2,27 +2,35 @@ using UnityEngine;
 
 public class TowerCrafter : MonoBehaviour
 {
-    [Header("Crafting Slots")]
-    public ComponentData baseSlot;
-    public ComponentData coreSlot;
-    public ComponentData weaponSlot;
+    [Header("UI Slots")]
+    public UICraftingSlot baseSlotUI;
+    public UICraftingSlot coreSlotUI;
+    public UICraftingSlot weaponSlotUI;
 
     [Header("Crafting Output")]
     public Transform spawnPoint;
     public bool autoClearAfterCraft = true;
+
+    void Start()
+    {
+        // let slots know who their parent is
+        baseSlotUI.crafter = this;
+        coreSlotUI.crafter = this;
+        weaponSlotUI.crafter = this;
+    }
 
     public void AddComponent(ComponentData component)
     {
         switch (component.type)
         {
             case ComponentType.Base:
-                baseSlot = component;
+                baseSlotUI.currentPart = component;
                 break;
             case ComponentType.Core:
-                coreSlot = component;
+                coreSlotUI.currentPart = component;
                 break;
             case ComponentType.Weapon:
-                weaponSlot = component;
+                weaponSlotUI.currentPart = component;
                 break;
         }
 
@@ -31,25 +39,22 @@ public class TowerCrafter : MonoBehaviour
 
     void TryCraft()
     {
-        if (baseSlot != null && coreSlot != null && weaponSlot != null)
+        if (baseSlotUI.currentPart != null && coreSlotUI.currentPart != null && weaponSlotUI.currentPart != null)
         {
             GameObject towerPrefab = TowerCraftingDatabase.Instance.GetCraftedTower(
-                baseSlot.componentID,
-                coreSlot.componentID,
-                weaponSlot.componentID
+                baseSlotUI.currentPart.componentID,
+                coreSlotUI.currentPart.componentID,
+                weaponSlotUI.currentPart.componentID
             );
 
             if (towerPrefab != null)
-            {
                 Instantiate(towerPrefab, spawnPoint.position, Quaternion.identity);
-                Debug.Log($"Crafted Tower from Base:{baseSlot.name}, Core:{coreSlot.name}, Weapon:{weaponSlot.name}");
-            }
 
             if (autoClearAfterCraft)
             {
-                baseSlot = null;
-                coreSlot = null;
-                weaponSlot = null;
+                baseSlotUI.ClearSlot();
+                coreSlotUI.ClearSlot();
+                weaponSlotUI.ClearSlot();
             }
         }
     }
