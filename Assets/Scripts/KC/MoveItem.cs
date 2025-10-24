@@ -24,7 +24,7 @@ public class MoveItem : MonoBehaviour
                     Vector3 pos = transform.position;
                     pos.y = stopY;
                     transform.position = pos;
-                    isMoving = false; // Stop when we reach top
+                    isMoving = false; //Stop when item is at top
                 }
             }
         }
