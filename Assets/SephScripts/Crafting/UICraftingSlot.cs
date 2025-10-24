@@ -1,32 +1,39 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UICraftingSlot : MonoBehaviour
+public class UICraftingSlot : MonoBehaviour, IDropHandler
 {
     public ComponentType slotType;
     public Image iconImage;
     public ComponentData currentPart;
-
     [HideInInspector] public TowerCrafter crafter;
 
-    void Start()
+    public void OnDrop(PointerEventData eventData)
     {
-        ClearSlot();
+        UIDraggableItem draggedItem = eventData.pointerDrag.GetComponent<UIDraggableItem>();
+        if (draggedItem != null && draggedItem.itemInstance != null)
+        {
+            ComponentData data = draggedItem.itemInstance.componentData;
+
+            if (data.type == slotType)
+            {
+                SetPart(data);
+                Destroy(draggedItem.gameObject);
+            }
+            else
+            {
+                Debug.LogWarning($"Wrong component type for this slot. Expected {slotType}, got {data.type}");
+            }
+        }
     }
 
     public void SetPart(ComponentData newPart)
     {
-        if (newPart.type != slotType)
-        {
-            Debug.LogWarning($"Invalid part type for this slot! Expected {slotType}, got {newPart.type}");
-            return;
-        }
-
         currentPart = newPart;
         iconImage.sprite = newPart.icon;
         iconImage.color = Color.white;
 
-        // notify crafter
         if (crafter != null)
             crafter.AddComponent(newPart);
     }
