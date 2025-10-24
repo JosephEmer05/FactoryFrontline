@@ -9,14 +9,14 @@ public class TowerCrafter : MonoBehaviour
 
     [Header("Crafting Output")]
     public Transform spawnPoint;
+    public TowerOutputConveyor conveyor;
     public bool autoClearAfterCraft = true;
 
     void Start()
     {
-        // let slots know who their parent is
-        baseSlotUI.crafter = this;
-        coreSlotUI.crafter = this;
-        weaponSlotUI.crafter = this;
+        if (baseSlotUI != null) baseSlotUI.crafter = this;
+        if (coreSlotUI != null) coreSlotUI.crafter = this;
+        if (weaponSlotUI != null) weaponSlotUI.crafter = this;
     }
 
     public void AddComponent(ComponentData component)
@@ -48,7 +48,20 @@ public class TowerCrafter : MonoBehaviour
             );
 
             if (towerPrefab != null)
-                Instantiate(towerPrefab, spawnPoint.position, Quaternion.identity);
+            {
+                if (conveyor != null)
+                {
+                    conveyor.SpawnTower(towerPrefab);
+                }
+                else if (spawnPoint != null)
+                {
+                    Instantiate(towerPrefab, spawnPoint.position, Quaternion.identity);
+                }
+                else
+                {
+                    Debug.LogWarning("No conveyor or spawn point assigned to TowerCrafter!");
+                }
+            }
 
             if (autoClearAfterCraft)
             {
