@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd4309a510f37a4788a3b579a415ad9, type: 3}
   m_Name: Core 4
   m_EditorClassIdentifier: Assembly-CSharp::ComponentData
-  componentName: Core 4
+  componentName: Rare Core
   componentID: 4
   type: 1
-  icon: {fileID: 0}
-  prefab: {fileID: 0}
+  icon: {fileID: 326313481, guid: 9317214438310b34e83491f0a5cd16eb, type: 3}
+  prefab: {fileID: 7954704077032756729, guid: dd7b1fc078918d348896212723cb8011, type: 3}

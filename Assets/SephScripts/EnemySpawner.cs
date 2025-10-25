@@ -7,12 +7,18 @@ public class EnemySpawner : MonoBehaviour
     public GameObject highEnemyPrefab;
 
     [Header("Spawner Settings")]
-    public int spawnIndex;
+    public int pathIndex;
     public bool isHighSpawner;
     public float spawnInterval = 2f;
 
     public void SpawnEnemyFromWave()
     {
+        if (WaypointManager.Instance == null)
+        {
+            Debug.LogWarning("No WaypointManager instance found in scene!");
+            return;
+        }
+
         GameObject enemyObj;
 
         if (isHighSpawner)
@@ -21,10 +27,21 @@ public class EnemySpawner : MonoBehaviour
             enemyObj = Instantiate(lowEnemyPrefab, transform.position, Quaternion.identity);
 
         EnemyBehavior enemy = enemyObj.GetComponent<EnemyBehavior>();
+        if (enemy == null)
+        {
+            Debug.LogWarning("Spawned enemy has no EnemyBehavior script!");
+            return;
+        }
 
         if (isHighSpawner)
-            enemy.AssignPath(WaypointManager.Instance.GetHighPathRandom());
+        {
+            Transform[] path = WaypointManager.Instance.GetHighPathRandom();
+            enemy.AssignPath(path);
+        }
         else
-            enemy.AssignPath(WaypointManager.Instance.GetGroundPath(spawnIndex));
+        {
+            Transform[] path = WaypointManager.Instance.GetGroundPath(pathIndex);
+            enemy.AssignPath(path);
+        }
     }
 }

@@ -2,56 +2,53 @@ using UnityEngine;
 
 public class MoveItem : MonoBehaviour
 {
-    public float speed = 2f;
-    public float stopY = 5f;           //Max Y position to stop at
-    public float checkDistance = 1.1f; //Distance to check for stacked items above
-    public LayerMask itemLayer;        //Layer assigned to items
+    [Header("Conveyor Settings")]
+    public float moveSpeed = 2f;
+    public Transform endPoint;
+    public LayerMask itemLayer;
+    public float checkDistance = 1.0f;
 
     private bool isMoving = true;
 
     void Update()
     {
-        if (isMoving)
-        {
-            //Only move if not below another item
-            if (!IsStackedBelow())
-            {
-                transform.Translate(Vector3.up * speed * Time.deltaTime);
+        if (!isMoving) return;
+        if (IsItemInFront())
+            return;
+        MoveTowardsEnd();
+    }
 
-                //Clamp position if it reaches the top
-                if (transform.position.y >= stopY)
-                {
-                    Vector3 pos = transform.position;
-                    pos.y = stopY;
-                    transform.position = pos;
-                    isMoving = false; //Stop when item is at top
-                }
-            }
+    void MoveTowardsEnd()
+    {
+        if (endPoint == null)
+        {
+            Debug.LogWarning("MoveItem missing End Point reference!");
+            return;
+        }
+
+        transform.position = Vector3.MoveTowards(transform.position, endPoint.position, moveSpeed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, endPoint.position) < 0.05f)
+        {
+            isMoving = false;
         }
     }
 
-    bool IsStackedBelow()
+    bool IsItemInFront()
     {
-        //Checks if there's an item above
         RaycastHit hit;
-        Vector3 origin = transform.position + Vector3.up * 0.5f;
-
-        if (Physics.Raycast(origin, Vector3.up, out hit, checkDistance, itemLayer))
+        if (Physics.Raycast(transform.position, Vector3.right, out hit, checkDistance, itemLayer))
         {
-            return true; //There's an item above
+            // Only stop if the detected item is closer to the end than this one
+            if (hit.collider != null && hit.collider.gameObject != gameObject)
+                return true;
         }
 
         return false;
     }
 
-    public void PickUp()
+    void OnDrawGizmosSelected()
     {
-        Debug.Log("Picked up item: " + gameObject.name);
-        Destroy(gameObject);
-    }
-
-    void OnMouseDown()
-    {
-        PickUp();
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.right * checkDistance);
     }
 }

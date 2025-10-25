@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd4309a510f37a4788a3b579a415ad9, type: 3}
   m_Name: Base 1
   m_EditorClassIdentifier: Assembly-CSharp::ComponentData
-  componentName: Base 1
+  componentName: Common Base
   componentID: 1
   type: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e8e66d4db20c1c14b9bfb066fe5a067b, type: 3}
   prefab: {fileID: 8795388382734461725, guid: a7c1cb3de719db54195d06e0865595bb, type: 3}

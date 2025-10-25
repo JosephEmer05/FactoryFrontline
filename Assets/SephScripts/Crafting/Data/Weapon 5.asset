@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd4309a510f37a4788a3b579a415ad9, type: 3}
   m_Name: Weapon 5
   m_EditorClassIdentifier: Assembly-CSharp::ComponentData
-  componentName: Weapon 5
+  componentName: Single Shot
   componentID: 5
   type: 2
-  icon: {fileID: 0}
-  prefab: {fileID: 0}
+  icon: {fileID: -2128380708, guid: 9317214438310b34e83491f0a5cd16eb, type: 3}
+  prefab: {fileID: 3503281236028696517, guid: 08f328a17109069418a38274a2bb3d2e, type: 3}

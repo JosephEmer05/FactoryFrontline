@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 8395474742712221846}
   - component: {fileID: 7035470132366821888}
   - component: {fileID: 3658518735754590550}
-  m_Layer: 0
+  - component: {fileID: 7901810458058743607}
+  - component: {fileID: -2648964278862491927}
+  m_Layer: 8
   m_Name: Weapon 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,3 +113,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7901810458058743607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3503281236028696517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fabfe7a74a5c2a47a9897c68a2ba743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemInstance
+  componentData: {fileID: 11400000, guid: 900ffd9cedbc24447bfe192e6478aa9f, type: 2}
+--- !u!114 &-2648964278862491927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3503281236028696517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48087052cc576d948bb9e78e23137970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveItem
+  speed: 2
+  stopY: 5
+  checkDistance: 1.1
+  itemLayer:
+    serializedVersion: 2
+    m_Bits: 256
