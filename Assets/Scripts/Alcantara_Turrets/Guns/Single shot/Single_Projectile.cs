@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Single_Projectile : MonoBehaviour
 {
     public float speed = 5f;
     private Transform target;

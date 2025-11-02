@@ -1,11 +1,10 @@
 using UnityEngine;
 using System.Linq;
 
-public class Turret_Aiming : MonoBehaviour
+public class Single_turret : MonoBehaviour
 {
     public GameObject projectilePrefab;  // Normal projectile
-    public float range = 5f;
-    public float cooldown = 2f;
+    public float cooldown = 0f;
     public float projectileSpeed = 15f;
     private float lastFireTime = 0f;
     private Transform currentTarget;
@@ -16,11 +15,6 @@ public class Turret_Aiming : MonoBehaviour
 
         if (currentTarget != null)
         {
-            // Rotate turret toward target (optional)
-            Vector3 direction = currentTarget.position - transform.position;
-            if (direction != Vector3.zero)
-                transform.rotation = Quaternion.LookRotation(direction);
-
             if (Time.time >= lastFireTime + cooldown)
             {
                 FireBullet(currentTarget);
@@ -33,7 +27,6 @@ public class Turret_Aiming : MonoBehaviour
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         return enemies
-            .Where(e => Vector3.Distance(transform.position, e.transform.position) <= range)
             .OrderBy(e => Vector3.Distance(transform.position, e.transform.position))
             .Select(e => e.transform)
             .FirstOrDefault();
@@ -54,7 +47,7 @@ public class Turret_Aiming : MonoBehaviour
             rb.linearVelocity = direction * projectileSpeed;
 
         // Optional: tell projectile its target (if it has seeking logic)
-        Projectile proj = bullet.GetComponent<Projectile>();
+        Single_Projectile proj = bullet.GetComponent<Single_Projectile>();
         if (proj != null)
             proj.SetTarget(target);
     }
