@@ -2,46 +2,36 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Enemy Prefabs")]
-    public GameObject lowEnemyPrefab;
-    public GameObject highEnemyPrefab;
-
     [Header("Spawner Settings")]
     public int pathIndex;
     public bool isHighSpawner;
-    public float spawnInterval = 2f;
 
-    public void SpawnEnemyFromWave()
+    public void SpawnEnemy(GameObject enemyPrefab)
     {
+        if (enemyPrefab == null)
+        {
+            Debug.LogWarning($"Missing enemy prefab on spawner {gameObject.name}");
+            return;
+        }
+
         if (WaypointManager.Instance == null)
         {
             Debug.LogWarning("No WaypointManager instance found in scene!");
             return;
         }
 
-        GameObject enemyObj;
+        GameObject enemyObj = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        BaseEnemy enemy = enemyObj.GetComponent<BaseEnemy>();
 
-        if (isHighSpawner)
-            enemyObj = Instantiate(highEnemyPrefab, transform.position, Quaternion.identity);
-        else
-            enemyObj = Instantiate(lowEnemyPrefab, transform.position, Quaternion.identity);
-
-        EnemyBehavior enemy = enemyObj.GetComponent<EnemyBehavior>();
         if (enemy == null)
         {
-            Debug.LogWarning("Spawned enemy has no EnemyBehavior script!");
+            Debug.LogWarning($"Spawned enemy '{enemyObj.name}' does not have a BaseEnemy-derived script!");
             return;
         }
 
         if (isHighSpawner)
-        {
-            Transform[] path = WaypointManager.Instance.GetHighPathRandom();
-            enemy.AssignPath(path);
-        }
+            enemy.AssignPath(WaypointManager.Instance.GetHighPathRandom());
         else
-        {
-            Transform[] path = WaypointManager.Instance.GetGroundPath(pathIndex);
-            enemy.AssignPath(path);
-        }
+            enemy.AssignPath(WaypointManager.Instance.GetGroundPath(pathIndex));
     }
 }

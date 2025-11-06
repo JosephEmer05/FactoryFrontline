@@ -1,24 +1,35 @@
 using System.Collections;
 using UnityEngine;
 
+[System.Serializable]
+public class WaveEntry
+{
+    public GameObject enemyPrefab;
+    public int count = 1;
+    public float spawnDelay = 0.5f;
+}
+
+[System.Serializable]
+public class Wave
+{
+    public string waveName;
+    public WaveEntry[] enemies;
+    public bool useLowSpawners = true;
+    public bool useHighSpawners = false;
+    public float timeAfterWave = 8f;
+}
+
 public class WaveManager : MonoBehaviour
 {
     [Header("Spawner References")]
     public EnemySpawner[] lowSpawners;
     public EnemySpawner[] highSpawners;
 
-    [Header("Wave Settings")]
-    public float timeBetweenWaves = 10f;
-    public int enemiesPerWave = 5;
-    public float spawnDelay = 0.5f;
+    [Header("Waves Configuration")]
+    public Wave[] waves;
 
-    [Header("Difficulty Scaling")]
-    public float enemyHealthMultiplier = 1.1f;
-    public float enemyDamageMultiplier = 1.05f;
-    public float spawnCountMultiplier = 1.15f;
-
-    private int currentWave = 0;
-    private bool isWaveActive = false;
+    private int currentWave = -1;
+    private bool isSpawning = false;
 
     void Start()
     {
@@ -29,42 +40,56 @@ public class WaveManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        while (true)
+        for (int i = 0; i < waves.Length; i++)
         {
-            currentWave++;
-            Debug.Log("Starting Wave " + currentWave);
-            isWaveActive = true;
+            currentWave = i;
+            Wave wave = waves[i];
 
-            yield return StartCoroutine(SpawnWaveGroup(lowSpawners));
-            yield return StartCoroutine(SpawnWaveGroup(highSpawners));
+            Debug.Log($"--- Starting {wave.waveName} ---");
+            yield return StartCoroutine(SpawnWave(wave));
 
-            isWaveActive = false;
-
-            enemiesPerWave = Mathf.CeilToInt(enemiesPerWave * spawnCountMultiplier);
-            spawnDelay = Mathf.Max(0.2f, spawnDelay * 0.95f);
-
-            Debug.Log("Wave " + currentWave + " finished. Next wave in " + timeBetweenWaves + " seconds.");
-            yield return new WaitForSeconds(timeBetweenWaves);
+            Debug.Log($"--- {wave.waveName} finished ---");
+            yield return new WaitForSeconds(wave.timeAfterWave);
         }
+
+        Debug.Log("All waves completed!");
     }
 
-    IEnumerator SpawnWaveGroup(EnemySpawner[] spawners)
+    IEnumerator SpawnWave(Wave wave)
     {
-        if (spawners.Length == 0) yield break;
+        isSpawning = true;
 
-        for (int i = 0; i < enemiesPerWave; i++)
+        foreach (WaveEntry entry in wave.enemies)
         {
-            foreach (EnemySpawner spawner in spawners)
+            for (int i = 0; i < entry.count; i++)
             {
-                if (spawner == null) continue;
-                spawner.SpawnEnemyFromWave();
-                yield return new WaitForSeconds(spawnDelay);
+                if (wave.useLowSpawners)
+                {
+                    foreach (EnemySpawner spawner in lowSpawners)
+                    {
+                        if (spawner != null)
+                            spawner.SpawnEnemy(entry.enemyPrefab);
+                    }
+                }
+
+                if (wave.useHighSpawners)
+                {
+                    foreach (EnemySpawner spawner in highSpawners)
+                    {
+                        if (spawner != null)
+                            spawner.SpawnEnemy(entry.enemyPrefab);
+                    }
+                }
+
+                yield return new WaitForSeconds(entry.spawnDelay);
             }
         }
+
+        isSpawning = false;
     }
 
     public int GetCurrentWave()
     {
-        return currentWave;
+        return currentWave + 1;
     }
 }
