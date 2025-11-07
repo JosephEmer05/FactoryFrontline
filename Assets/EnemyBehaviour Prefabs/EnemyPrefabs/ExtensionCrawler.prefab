@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6107926433299814625
+--- !u!1 &7939684599789357088
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7290370686209781243}
-  - component: {fileID: 1246219643118710321}
-  - component: {fileID: 2690086820363219281}
-  - component: {fileID: 1442680822867419079}
-  - component: {fileID: 2180576377140343561}
+  - component: {fileID: 4485980612233521350}
+  - component: {fileID: 5198651015785251874}
+  - component: {fileID: 1644467486944504243}
+  - component: {fileID: 1642177364966671091}
+  - component: {fileID: 7296734433019057252}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: ExtensionCrawler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7290370686209781243
+--- !u!4 &4485980612233521350
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6107926433299814625}
+  m_GameObject: {fileID: 7939684599789357088}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.10813, y: 0.487, z: 14.19123}
+  m_LocalPosition: {x: 18.7, y: 0.5, z: 1.61909}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1246219643118710321
+--- !u!33 &5198651015785251874
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6107926433299814625}
+  m_GameObject: {fileID: 7939684599789357088}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2690086820363219281
+--- !u!23 &1644467486944504243
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6107926433299814625}
+  m_GameObject: {fileID: 7939684599789357088}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e866036fa31cf0e42847167849a9f977, type: 2}
+  - {fileID: 2100000, guid: 955ff54f473874a49a2d6b373ca0538d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,13 +91,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1442680822867419079
+--- !u!135 &1642177364966671091
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6107926433299814625}
+  m_GameObject: {fileID: 7939684599789357088}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -112,25 +112,21 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2180576377140343561
+--- !u!114 &7296734433019057252
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6107926433299814625}
+  m_GameObject: {fileID: 7939684599789357088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e903fe72d505c4796d5537135165c4, type: 3}
+  m_Script: {fileID: 11500000, guid: a0b4c9e5d5ce9c04f8a370c36d522d88, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyBehavior
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::ExtensionCrawler
+  health: 20
   speed: 2
-  atkRange: 1.5
+  atkRange: 0.8
   atkDmg: 3
   atkCooldown: 1
   towerLayer:
@@ -139,3 +135,7 @@ MonoBehaviour:
   baseLayer:
     serializedVersion: 2
     m_Bits: 128
+  attachRange: 1.5
+  wrapDamage: 2
+  damageInterval: 0.5
+  latchDuration: 3

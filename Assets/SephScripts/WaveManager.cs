@@ -7,6 +7,10 @@ public class WaveEntry
     public GameObject enemyPrefab;
     public int count = 1;
     public float spawnDelay = 0.5f;
+
+    [Header("Spawn Type")]
+    public bool spawnInLowSpawner = true;
+    public bool spawnInHighSpawner = false;
 }
 
 [System.Serializable]
@@ -14,8 +18,6 @@ public class Wave
 {
     public string waveName;
     public WaveEntry[] enemies;
-    public bool useLowSpawners = true;
-    public bool useHighSpawners = false;
     public float timeAfterWave = 8f;
 }
 
@@ -63,7 +65,7 @@ public class WaveManager : MonoBehaviour
         {
             for (int i = 0; i < entry.count; i++)
             {
-                if (wave.useLowSpawners)
+                if (entry.spawnInLowSpawner)
                 {
                     foreach (EnemySpawner spawner in lowSpawners)
                     {
@@ -72,7 +74,7 @@ public class WaveManager : MonoBehaviour
                     }
                 }
 
-                if (wave.useHighSpawners)
+                if (entry.spawnInHighSpawner)
                 {
                     foreach (EnemySpawner spawner in highSpawners)
                     {

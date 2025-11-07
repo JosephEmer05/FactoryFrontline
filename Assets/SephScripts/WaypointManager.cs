@@ -5,12 +5,12 @@ public class WaypointManager : MonoBehaviour
     public static WaypointManager Instance;
 
     [Header("Low-Ground Paths")]
-    public Transform[][] lowGround;
     public Transform[] lowPaths;
+    private Transform[][] lowGround;
 
     [Header("High-Ground Paths")]
-    public Transform[][] highGround;
     public Transform[] highPaths;
+    private Transform[][] highGround;
 
     void Awake()
     {
@@ -21,9 +21,7 @@ public class WaypointManager : MonoBehaviour
         {
             lowGround[i] = new Transform[lowPaths[i].childCount];
             for (int j = 0; j < lowPaths[i].childCount; j++)
-            {
                 lowGround[i][j] = lowPaths[i].GetChild(j);
-            }
         }
 
         highGround = new Transform[highPaths.Length][];
@@ -31,9 +29,7 @@ public class WaypointManager : MonoBehaviour
         {
             highGround[i] = new Transform[highPaths[i].childCount];
             for (int j = 0; j < highPaths[i].childCount; j++)
-            {
                 highGround[i][j] = highPaths[i].GetChild(j);
-            }
         }
     }
 
@@ -46,5 +42,10 @@ public class WaypointManager : MonoBehaviour
     {
         int randomIndex = Random.Range(0, highGround.Length);
         return highGround[randomIndex];
+    }
+
+    public Transform[] GetHighPathByIndex(int index)
+    {
+        return highGround[Mathf.Clamp(index, 0, highGround.Length - 1)];
     }
 }
