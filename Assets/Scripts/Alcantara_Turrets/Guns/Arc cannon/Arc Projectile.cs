@@ -6,14 +6,28 @@ public class Arc_Projectile : MonoBehaviour
     public float speed = 10f;
     public int maxJumps = 3;
     public float hitCooldown = 0.05f;
+    public float maxRange = 10f; 
 
     private Transform target;
     private int jumps = 0;
     private HashSet<int> hitIds = new HashSet<int>();
     private float ignoreCollisionUntil = 0f;
+    private Vector3 spawnPosition;
+
+    void Start()
+    {
+        spawnPosition = transform.position;
+    }
 
     void Update()
     {
+        // Destroy if projectile moves beyond max range from spawn point
+        if (Vector3.Distance(spawnPosition, transform.position) > maxRange)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         // If no target, find a new one
         if (target == null)
         {
@@ -51,6 +65,11 @@ public class Arc_Projectile : MonoBehaviour
             if (excludeIds.Contains(enemy.GetInstanceID())) continue;
 
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            float distanceFromSpawn = Vector3.Distance(spawnPosition, enemy.transform.position);
+
+
+            if (distanceFromSpawn > maxRange) continue;
+
             if (distance < minDistance)
             {
                 minDistance = distance;
@@ -68,14 +87,11 @@ public class Arc_Projectile : MonoBehaviour
         GameObject hitEnemy = other.gameObject;
         int hitId = hitEnemy.GetInstanceID();
 
-        // Mark as hit
         hitIds.Add(hitId);
         jumps++;
 
-        // Find next target BEFORE destroying this one
         Transform nextTarget = FindNewTarget(hitIds);
 
-        // Destroy the hit enemy
         Destroy(hitEnemy);
 
         if (jumps >= maxJumps || nextTarget == null)
@@ -84,10 +100,8 @@ public class Arc_Projectile : MonoBehaviour
             return;
         }
 
-        // Immediately retarget and continue homing
         target = nextTarget;
 
-        // Move slightly forward and delay re-collision
         transform.position += transform.forward * 0.1f;
         ignoreCollisionUntil = Time.time + hitCooldown;
     }

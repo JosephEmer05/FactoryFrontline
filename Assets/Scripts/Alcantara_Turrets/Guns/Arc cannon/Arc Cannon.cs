@@ -10,6 +10,19 @@ public class Arc_Turret : MonoBehaviour
     private float lastFireTime = 0f;
     private Transform currentTarget;
 
+    void Start()
+    {
+        if (projectilePrefab == null)
+        {
+            projectilePrefab = Resources.Load<GameObject>("Prefabs/ArcPrefab");
+            if (projectilePrefab == null)
+            {
+                Debug.LogError("Arc_Turret: Could not find 'ArcPrefab' in a 'Resources/Prefabs' folder. " +
+                               "Please either assign it in the Inspector or move it to 'Assets/Resources/Prefabs/ArcPrefab.prefab'.");
+            }
+        }
+    }
+
     void Update()
     {
         currentTarget = FindClosestEnemy();
