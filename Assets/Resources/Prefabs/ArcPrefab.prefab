@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -673093367715605848}
   - component: {fileID: 2739830915064653060}
   m_Layer: 0
-  m_Name: Arc
+  m_Name: ArcPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
