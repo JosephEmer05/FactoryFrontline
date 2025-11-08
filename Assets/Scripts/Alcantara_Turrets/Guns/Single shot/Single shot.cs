@@ -9,6 +9,18 @@ public class Single_turret : MonoBehaviour
     private float lastFireTime = 0f;
     private Transform currentTarget;
 
+void start()
+    {
+        if (projectilePrefab == null)
+        {
+            projectilePrefab = Resources.Load<GameObject>("Prefabs/SinglePrefab");
+            if (projectilePrefab == null)
+            {
+                Debug.LogError("Single_Turret: Could not find 'SinglePrefab' in a 'Resources/Prefabs' folder. " +
+                               "Please either assign it in the Inspector or move it to 'Assets/Resources/Prefabs/SinglePrefab.prefab'.");
+            }
+        }
+    }
     void Update()
     {
         currentTarget = FindClosestEnemy();
