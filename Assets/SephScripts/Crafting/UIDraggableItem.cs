@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class UIDraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public ItemInstance itemInstance;
+    public ComponentInstance itemInstance;
     private CanvasGroup canvasGroup;
     private RectTransform rectTransform;
     private Transform originalParent;

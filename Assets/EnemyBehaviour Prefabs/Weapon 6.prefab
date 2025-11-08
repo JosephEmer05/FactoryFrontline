@@ -138,9 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48087052cc576d948bb9e78e23137970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveItem
-  speed: 2
-  stopY: 5
-  checkDistance: 1.1
+  moveSpeed: 2
+  endPoint: {fileID: 0}
   itemLayer:
     serializedVersion: 2
     m_Bits: 256
+  checkDistance: 1.1

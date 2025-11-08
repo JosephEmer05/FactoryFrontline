@@ -31,7 +31,7 @@ public class ItemSpawner : MonoBehaviour
         int index = Random.Range(0, items.Length);
         GameObject newItem = Instantiate(items[index], spawnPoint.position, Quaternion.identity);
 
-        MoveItem moveScript = newItem.GetComponent<MoveItem>();
+        MoveAlongConveyor moveScript = newItem.GetComponent<MoveAlongConveyor>();
         if (moveScript != null && endPoint != null)
         {
             moveScript.endPoint = endPoint;
