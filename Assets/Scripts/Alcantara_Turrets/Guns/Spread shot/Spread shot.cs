@@ -16,6 +16,18 @@ public class Spread_turret : MonoBehaviour
     [Tooltip("Total cone angle in degrees")]
     public float spreadAngle = 20f;
 
+        void start()
+    {
+        if (projectilePrefab == null)
+        {
+            projectilePrefab = Resources.Load<GameObject>("Prefabs/SpreadPrefab");
+            if (projectilePrefab == null)
+            {
+                Debug.LogError("Single_Turret: Could not find 'SpreadPrefab' in a 'Resources/Prefabs' folder. " +
+                               "Please either assign it in the Inspector or move it to 'Assets/Resources/Prefabs/SpreadPrefab.prefab'.");
+            }
+        }
+    }
     void Update()
     {
         currentTarget = FindClosestEnemy();
