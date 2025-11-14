@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExtensionCrawler
   health: 20
-  speed: 2
+  speed: 3.5
   atkRange: 0.8
   atkDmg: 3
   atkCooldown: 1

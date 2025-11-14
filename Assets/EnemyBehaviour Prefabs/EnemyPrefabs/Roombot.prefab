@@ -124,11 +124,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 690393090f117d94ea076f1d94f46a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Roombot
-  health: 20
-  speed: 2
+  health: 30
+  speed: 3
   atkRange: 0.8
-  atkDmg: 3
-  atkCooldown: 1
+  atkDmg: 5
+  atkCooldown: 2
   towerLayer:
     serializedVersion: 2
     m_Bits: 64
