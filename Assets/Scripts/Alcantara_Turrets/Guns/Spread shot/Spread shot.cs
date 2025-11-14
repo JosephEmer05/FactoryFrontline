@@ -3,7 +3,7 @@ using System.Linq;
 
 public class Spread_turret : MonoBehaviour
 {
-    public GameObject projectilePrefab;  // Normal projectile
+    public GameObject SpreadPrefab;  // Normal projectile
     public float range = 5f;
     public float cooldown = 1f;
     public float projectileSpeed = 15f;
@@ -16,12 +16,15 @@ public class Spread_turret : MonoBehaviour
     [Tooltip("Total cone angle in degrees")]
     public float spreadAngle = 20f;
 
+    [Tooltip("Distance in front of turret to spawn pellets")]
+    public float spawnOffset = 1f;
+
     void Start()
     {
-        if (projectilePrefab == null)
+        if (SpreadPrefab == null)
         {
-            projectilePrefab = Resources.Load<GameObject>("Prefabs/SpreadPrefab");
-            if (projectilePrefab == null)
+            SpreadPrefab = Resources.Load<GameObject>("Prefabs/SpreadPrefab");
+            if (SpreadPrefab == null)
             {
                 Debug.LogError("Single_Turret: Could not find 'SpreadPrefab' in a 'Resources/Prefabs' folder. " +
                                "Please either assign it in the Inspector or move it to 'Assets/Resources/Prefabs/SpreadPrefab.prefab'.");
@@ -47,38 +50,48 @@ public class Spread_turret : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         return enemies
             .Where(e => Vector3.Distance(transform.position, e.transform.position) <= range)
+            .OrderBy(e => Vector3.Distance(transform.position, e.transform.position))
             .Select(e => e.transform)
             .FirstOrDefault();
     }
 
     void FireBullet(Transform target)
     {
-        // Base direction toward the target (in 2D, we only care about x and y)
+        // Base direction toward the target (3D)
         Vector3 baseDirection = (target.position - transform.position).normalized;
 
-        // Spawn multiple pellets in a 2D cone
+        // Rotate turret to face the target (visual aiming)
+        if (baseDirection != Vector3.zero)
+            transform.rotation = Quaternion.LookRotation(baseDirection);
+
+        // Spawn multiple pellets in a 3D cone
+        float halfAngle = spreadAngle * 0.5f;
         for (int i = 0; i < Mathf.Max(1, pelletCount); i++)
         {
-            // Random angle within the spread cone (only Z-axis rotation for 2D)
-            float halfAngle = spreadAngle * 0.5f;
-            float randomAngle = Random.Range(-halfAngle, halfAngle);
+            // Random yaw and pitch within the spread cone
+            float yaw = Random.Range(-halfAngle, halfAngle);
+            float pitch = Random.Range(-halfAngle, halfAngle);
 
-            // Rotate around Z-axis for 2D spread
-            Quaternion spreadRotation = Quaternion.AngleAxis(randomAngle, Vector3.forward);
-            Vector3 pelletDir = spreadRotation * baseDirection;
+            // Build rotation: start with look rotation to base direction, then apply local pitch/yaw offsets
+            Quaternion spreadRot = Quaternion.Euler(pitch, yaw, 0f);
+            Quaternion pelletRot = Quaternion.LookRotation(baseDirection) * spreadRot;
+            Vector3 pelletDir = pelletRot * Vector3.forward;
+
+            // Spawn a bit in front to avoid overlapping the turret collider
+            Vector3 spawnPos = transform.position + pelletDir * spawnOffset;
 
             // Instantiate pellet and orient it along its direction
-            GameObject pellet = Instantiate(spreadPrefab, transform.position, Quaternion.LookRotation(Vector3.forward, pelletDir));
+            GameObject pellet = Instantiate(SpreadPrefab, spawnPos, Quaternion.LookRotation(pelletDir));
 
             // Launch it toward the pellet direction
             Rigidbody rb = pellet.GetComponent<Rigidbody>();
             if (rb != null)
                 rb.linearVelocity = pelletDir * projectileSpeed;
 
-            // Optional: tell projectile its target (if it has seeking logic)
-            Single_Projectile proj = pellet.GetComponent<Single_Projectile>();
-            if (proj != null)
-                proj.SetTarget(target);
+            // Optional: tell projectile its target if it supports homing
+            Single_Projectile singleProj = pellet.GetComponent<Single_Projectile>();
+            if (singleProj != null)
+                singleProj.SetTarget(target);
         }
     }
 }
