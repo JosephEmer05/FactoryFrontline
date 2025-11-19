@@ -29,8 +29,6 @@ public class WaveManager : MonoBehaviour
     public Wave[] waves;
 
     private int currentWave = -1;
-    private bool isSpawning = false;
-
     void Start()
     {
         StartCoroutine(WaveRoutine());
@@ -57,8 +55,6 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator SpawnWave(Wave wave)
     {
-        isSpawning = true;
-
         foreach (WaveEntry entry in wave.enemies)
         {
             for (int i = 0; i < entry.count; i++)
@@ -84,8 +80,6 @@ public class WaveManager : MonoBehaviour
                 yield return new WaitForSeconds(entry.spawnDelay);
             }
         }
-
-        isSpawning = false;
     }
 
     public int GetCurrentWave()
