@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1050357663975318810}
   - component: {fileID: 8065253549625169104}
   - component: {fileID: -384761392881120971}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Core 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7954704077032756729}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fabfe7a74a5c2a47a9897c68a2ba743, type: 3}
+  m_Script: {fileID: 11500000, guid: 08f515830ea51e847baec020b1d3b985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemInstance
   componentData: {fileID: 11400000, guid: eecc6f14aa6784649b6d6cab95d956f5, type: 2}
@@ -138,9 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48087052cc576d948bb9e78e23137970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveItem
-  speed: 2
-  stopY: 5
-  checkDistance: 1.1
+  moveSpeed: 2
+  endPoint: {fileID: 0}
   itemLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 64
+  checkDistance: 1.1
