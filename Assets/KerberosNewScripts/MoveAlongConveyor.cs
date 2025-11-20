@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MoveAlongConveyor : MonoBehaviour
 {
@@ -6,97 +6,48 @@ public class MoveAlongConveyor : MonoBehaviour
     public float moveSpeed = 2f;
     public Transform endPoint;
     public LayerMask itemLayer;
-    // Distance between each component in the conveyor
-    public float checkDistance = 3f;
+    public float stopDistance = 1f;
 
-    private bool isMoving = true;
+    [HideInInspector] public ItemSpawner ownerSpawner;
 
-    /*void Awake()
-    {
-        if (endPoint != null)
-        {
-            moveTo = (endPoint.position - transform.position).normalized;
-        }
-        else
-        {
-            moveTo = Vector3.right;
-        }
-    }*/
+    private bool isPaused = false;
 
     void Update()
     {
-        if (IsItemInFront(out Vector3 hitPoint))
-        {
-            Vector3 direction = (endPoint.position - transform.position).normalized;
-            transform.position = hitPoint - direction * checkDistance;
-            isMoving = false;
-            return;
-        }
+        if (isPaused) return; // 🚫 Full stop
 
-        if (ReachedEnd())
-        {
-            transform.position = endPoint.position;
-            isMoving = false;
-            return;
-        }
+        if (IsItemInFront()) return;
 
-        MoveTowardsEnd();
+        MoveForward();
     }
 
-    void MoveTowardsEnd()
+    public void Pause() => isPaused = true;
+
+    public void Resume() => isPaused = false;
+
+    void MoveForward()
     {
-        if (endPoint == null)
-        {
-            Debug.LogWarning("MoveItem missing End Point reference!");
-            return;
-        }
+        if (endPoint == null) return;
 
-        Vector3 direction = (endPoint.position - transform.position).normalized;
-
-        transform.position = Vector3.MoveTowards(transform.position, endPoint.position, moveSpeed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, endPoint.position) < 0.05f)
-        {
-            transform.position = endPoint.position;
-            isMoving = false;
-        }
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            endPoint.position,
+            moveSpeed * Time.deltaTime
+        );
     }
 
-    bool ReachedEnd()
+    bool IsItemInFront()
     {
         if (endPoint == null) return false;
 
-        return Vector3.Distance(transform.position, endPoint.position) <= 0.01f;
-    }
+        Vector3 dir = (endPoint.position - transform.position).normalized;
 
-    bool IsItemInFront(out Vector3 hitPoint)
-    {
-        hitPoint = Vector3.zero;
-
-        if (endPoint == null) return false;
-
-        Vector3 direction = (endPoint.position - transform.position).normalized;
-
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, direction, out hit, checkDistance + 0.2f, itemLayer))
+        if (Physics.Raycast(transform.position, dir, out RaycastHit hit, stopDistance, itemLayer))
         {
-            if (hit.collider != null && hit.collider.gameObject != gameObject)
-            {
-                hitPoint = hit.collider.transform.position;
+            if (hit.collider.gameObject != gameObject)
                 return true;
-            }
         }
 
         return false;
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.right * checkDistance);
-    }
-
-    public void SetStatus(bool moving)
-    {
-        isMoving = moving;
     }
 }

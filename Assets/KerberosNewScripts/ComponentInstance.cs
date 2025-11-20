@@ -1,73 +1,65 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ComponentInstance : MonoBehaviour
 {
-    private Camera mainCamera;
-    private MoveAlongConveyor moveScript;
+    private Camera cam;
+    private MoveAlongConveyor move;
+    private ItemSpawner spawner;
 
     private bool isDragging = false;
     private float zOffset;
-    private Vector3 offset;
-    private Vector3 originalPosition;
+    private Vector3 grabOffset;
+    private Vector3 originalPos;
 
     public ComponentData componentData;
 
     void Awake()
     {
-        mainCamera = Camera.main;
-        moveScript = GetComponent<MoveAlongConveyor>();
+        cam = Camera.main;
+        move = GetComponent<MoveAlongConveyor>();
+        spawner = move.ownerSpawner;
     }
 
     void Update()
     {
         var mouse = Mouse.current;
 
-        // Register Click
         if (mouse.leftButton.wasPressedThisFrame)
         {
-            Ray ray = mainCamera.ScreenPointToRay(mouse.position.ReadValue());
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            Ray ray = cam.ScreenPointToRay(mouse.position.ReadValue());
+
+            if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.gameObject == gameObject)
             {
-                if (hit.collider.gameObject == gameObject)
-                {
-                    isDragging = true;
-                    moveScript.SetStatus(false);
+                isDragging = true;
+                originalPos = transform.position;
 
-                    originalPosition = transform.position;
+                if (spawner != null)
+                    spawner.PauseAll();
 
-                    zOffset = mainCamera.WorldToScreenPoint(transform.position).z;
-                    Vector3 mousePosition = mouse.position.ReadValue();
-                    mousePosition.z = zOffset;
+                zOffset = cam.WorldToScreenPoint(transform.position).z;
+                Vector3 mp = mouse.position.ReadValue();
+                mp.z = zOffset;
 
-                    offset = transform.position - mainCamera.ScreenToWorldPoint(mousePosition);
-
-                    // !! Debug
-                    Debug.Log("Started dragging " + gameObject.name);
-                }
+                grabOffset = transform.position - cam.ScreenToWorldPoint(mp);
             }
         }
 
-        // Drag 
-        if (isDragging && mouse.leftButton.isPressed)
+        if (isDragging)
         {
-            Vector3 mousePosition = mouse.position.ReadValue();
-            mousePosition.z = zOffset;
-
-            Vector3 moveTo = mainCamera.ScreenToWorldPoint(mousePosition) + offset;
-            transform.position = moveTo;
+            Vector3 mp = mouse.position.ReadValue();
+            mp.z = zOffset;
+            transform.position = cam.ScreenToWorldPoint(mp) + grabOffset;
         }
 
-        // Release
         if (isDragging && mouse.leftButton.wasReleasedThisFrame)
         {
             isDragging = false;
+            transform.position = originalPos;
+            move.Resume();
 
-            transform.position = originalPosition;
-            moveScript.SetStatus(true);
-
-            // !! Debug
-            Debug.Log("Stopped dragging " + gameObject.name);
+            if (spawner != null)
+                spawner.ResumeAll();
         }
     }
 }
