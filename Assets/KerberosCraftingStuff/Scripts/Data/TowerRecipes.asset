@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a01fb4137c37e498a94a8917755628, type: 3}
+  m_Name: TowerRecipes
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeData
+  recipes:
+  - towerName: Tower 1
+    towerID: 1
+    packagePrefab: {fileID: 376983714577661251, guid: a47d3e5b363bd434d8380b340d9510dd, type: 3}
+    weapID: 5
+    coreID: 3
+    baseID: 1
+  - towerName: Tower 2
+    towerID: 2
+    packagePrefab: {fileID: 376983714577661251, guid: aeb3a3a11dad4fc4e9d53cbb205f88ca, type: 3}
+    weapID: 5
+    coreID: 4
+    baseID: 1
+  - towerName: Tower 3
+    towerID: 3
+    packagePrefab: {fileID: 376983714577661251, guid: 96a9a2dab2bd49a4cb132b975b661693, type: 3}
+    weapID: 6
+    coreID: 3
+    baseID: 1
+  - towerName: Tower 4
+    towerID: 4
+    packagePrefab: {fileID: 376983714577661251, guid: 1447582a67f192e47ae01635b2eb41cc, type: 3}
+    weapID: 6
+    coreID: 4
+    baseID: 1
+  - towerName: Tower 5
+    towerID: 5
+    packagePrefab: {fileID: 376983714577661251, guid: ed752e85ecb02264da5c66e9c13592da, type: 3}
+    weapID: 5
+    coreID: 3
+    baseID: 2
+  - towerName: Tower 6
+    towerID: 6
+    packagePrefab: {fileID: 376983714577661251, guid: 650b506a0df85664f866de09ee6c1f85, type: 3}
+    weapID: 5
+    coreID: 4
+    baseID: 2
+  - towerName: Tower 7
+    towerID: 7
+    packagePrefab: {fileID: 376983714577661251, guid: 1c5cbfaea00536a4488c48ed323b08b3, type: 3}
+    weapID: 6
+    coreID: 3
+    baseID: 2
+  - towerName: Tower 8
+    towerID: 8
+    packagePrefab: {fileID: 376983714577661251, guid: 36e40ea022c289747bce2c48a07dfa7f, type: 3}
+    weapID: 6
+    coreID: 4
+    baseID: 2
