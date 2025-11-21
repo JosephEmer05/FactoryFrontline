@@ -9638,6 +9638,7 @@ MonoBehaviour:
   endPoint: {fileID: 647114614}
   spawnInterval: 2
   maxItems: 6
+  activeItems: []
 --- !u!1 &1013371099
 GameObject:
   m_ObjectHideFlags: 0
@@ -10378,7 +10379,7 @@ RectTransform:
   - {fileID: 1784850645}
   - {fileID: 1340829472}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -2.9, y: 21.92}
@@ -18210,6 +18211,7 @@ MonoBehaviour:
   endPoint: {fileID: 1865077324}
   spawnInterval: 2
   maxItems: 6
+  activeItems: []
 --- !u!1 &1829242545
 GameObject:
   m_ObjectHideFlags: 0
@@ -21168,6 +21170,7 @@ MonoBehaviour:
   endPoint: {fileID: 1096857002}
   spawnInterval: 2
   maxItems: 6
+  activeItems: []
 --- !u!1001 &2141356787
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class ItemSpawner : MonoBehaviour
 {
@@ -6,35 +7,56 @@ public class ItemSpawner : MonoBehaviour
     public Transform spawnPoint;
     public Transform endPoint;
     public float spawnInterval = 2f;
-    public int maxItems = 6;
+    public int maxItems = 8;
 
     private float timer;
+
+    public List<MoveAlongConveyor> activeItems = new List<MoveAlongConveyor>();
 
     void Update()
     {
         timer += Time.deltaTime;
+
         if (timer >= spawnInterval)
         {
-            SpawnItem();
+            TrySpawnItem();
             timer = 0f;
         }
     }
 
-    void SpawnItem()
+    void TrySpawnItem()
     {
-        if (items.Length == 0 || spawnPoint == null)
-        {
-            Debug.LogWarning("ItemSpawner missing items or spawn point.");
-            return;
-        }
+        if (activeItems.Count >= maxItems) return;
 
-        int index = Random.Range(0, items.Length);
-        GameObject newItem = Instantiate(items[index], spawnPoint.position, Quaternion.identity);
+        GameObject prefab = items[Random.Range(0, items.Length)];
+        GameObject obj = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
 
-        MoveAlongConveyor moveScript = newItem.GetComponent<MoveAlongConveyor>();
-        if (moveScript != null && endPoint != null)
+        if (endPoint != null)
+            obj.transform.rotation = Quaternion.LookRotation(endPoint.position - spawnPoint.position);
+
+        MoveAlongConveyor move = obj.GetComponent<MoveAlongConveyor>();
+        if (move != null)
         {
-            moveScript.endPoint = endPoint;
+            move.ownerSpawner = this;
+            move.endPoint = endPoint;
+            activeItems.Add(move);
         }
+    }
+
+    public void PauseAll()
+    {
+        foreach (var i in activeItems)
+            if (i != null) i.Pause();
+    }
+
+    public void ResumeAll()
+    {
+        foreach (var i in activeItems)
+            if (i != null) i.Resume();
+    }
+
+    public void RemoveItem(MoveAlongConveyor item)
+    {
+        activeItems.Remove(item);
     }
 }
