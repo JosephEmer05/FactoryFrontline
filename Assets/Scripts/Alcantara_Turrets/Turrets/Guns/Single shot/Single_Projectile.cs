@@ -3,62 +3,56 @@ using UnityEngine;
 public class Single_Projectile : MonoBehaviour
 {
     public float speed = 5f;
-    public float damage = 5f;
+    public bool homing = true; // if false, move straight forward
+    public Alltowerscript owner; // turret providing damage
 
     private Transform target;
 
     void Update()
     {
-        if (target == null)
+        if (homing)
         {
-            Destroy(gameObject);
-            return;
+            if (target == null)
+            {
+                target = FindNewTarget();
+                if (target == null)
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+            }
+            Vector3 direction = (target.position - transform.position).normalized;
+            transform.position += direction * speed * Time.deltaTime;
+            if (direction != Vector3.zero)
+                transform.rotation = Quaternion.LookRotation(direction);
         }
-
-        Vector3 direction = (target.position - transform.position).normalized;
-        transform.position += direction * speed * Time.deltaTime;
-
-        if (direction != Vector3.zero)
-            transform.rotation = Quaternion.LookRotation(direction);
+        else
+        {
+            transform.position += transform.forward * speed * Time.deltaTime;
+        }
     }
 
-    public void SetTarget(Transform newTarget)
-    {
-        target = newTarget;
-    }
+    public void SetTarget(Transform newTarget) { target = newTarget; }
 
     Transform FindNewTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Transform closest = null;
-        float minDistance = Mathf.Infinity;
-
+        Transform closest = null; float minDistance = Mathf.Infinity;
         foreach (GameObject enemy in enemies)
         {
+            if (enemy == null) continue;
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
-
-            if (distance < minDistance)
-            {
-                minDistance = distance;
-                closest = enemy.transform;
-            }
+            if (distance < minDistance) { minDistance = distance; closest = enemy.transform; }
         }
-
         return closest;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
-        {
-            BaseEnemy enemy = other.GetComponent<BaseEnemy>();
-
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-            }
-
-            Destroy(gameObject);
-        }
+        if (!other.CompareTag("Enemy")) return;
+        BaseEnemy enemy = other.GetComponent<BaseEnemy>();
+        if (enemy != null && owner != null)
+            enemy.TakeDamage(owner.CurrentDamage);
+        Destroy(gameObject);
     }
 }

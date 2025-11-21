@@ -4,6 +4,9 @@ public class Spread_Projectile : MonoBehaviour
 {
     public float speed = 5f;
     public float lifetime = 1.5f;
+    public bool homing = false;
+    public Alltowerscript owner; // turret providing damage
+    private Transform target;
 
     void Start()
     {
@@ -13,55 +16,39 @@ public class Spread_Projectile : MonoBehaviour
 
     void Update()
     {
-        // Move forward along initial facing direction (no homing)
-        transform.position += transform.forward * speed * Time.deltaTime;
-
-        // Face the direction of movement
-        if (transform.forward != Vector3.zero)
-            transform.rotation = Quaternion.LookRotation(transform.forward);
-    }
-
-    // Utility: walk up parents to find a GameObject with the specified tag
-    GameObject FindTaggedParent(GameObject obj, string tag)
-    {
-        Transform t = obj.transform;
-        while (t != null)
+        if (homing && target != null)
         {
-            if (t.CompareTag(tag))
-                return t.gameObject;
-            t = t.parent;
+            Vector3 direction = (target.position - transform.position).normalized;
+            transform.position += direction * speed * Time.deltaTime;
+            // Face the direction of movement
+            if (direction != Vector3.zero)
+                transform.rotation = Quaternion.LookRotation(direction);
         }
-        return null;
-    }
-
-    // Handler used by both trigger and collision events
-    void HandleHit(GameObject otherObj)
-    {
-        if (otherObj == null)
-            return;
-
-        // Ignore turret objects
-        if (otherObj.CompareTag("Turret"))
-            return;
-
-        // Try the object itself, then parents
-        GameObject enemy = FindTaggedParent(otherObj, "Enemy");
-        if (enemy != null)
+        else
         {
-            Destroy(enemy); // Destroy enemy root
-            Destroy(gameObject); // Destroy projectile
+            // Move forward along initial facing direction (no homing)
+            transform.position += transform.forward * speed * Time.deltaTime;
         }
     }
 
-    // 3D trigger event
+    public void SetTarget(Transform t) { target = t; }
+
+    private void ApplyHit(BaseEnemy enemy)
+    {
+        if (enemy != null && owner != null)
+            enemy.TakeDamage(owner.CurrentDamage);
+        Destroy(gameObject); // pellet consumed
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        HandleHit(other.gameObject);
+        if (!other.CompareTag("Enemy")) return;
+        ApplyHit(other.GetComponent<BaseEnemy>());
     }
 
-    // 3D collision event (in case colliders are not triggers)
     private void OnCollisionEnter(Collision collision)
     {
-        HandleHit(collision.gameObject);
+        if (!collision.collider.CompareTag("Enemy")) return;
+        ApplyHit(collision.collider.GetComponent<BaseEnemy>());
     }
 }
