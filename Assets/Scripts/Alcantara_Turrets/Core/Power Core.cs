@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class PowerCore : BaseCore
+public class PowerCore : MonoBehaviour
 {
     [Header("Power Core Stats (Rare)")]
     [Tooltip("Shots per second")]
-    public new float fireRate = 1.2f;
+    public float fireRate = 1.2f;
 
     [Tooltip("Damage applied per hit")]
-    public new float damage = 15f;
+    public float damage = 15f;
 
     [Tooltip("Effective range units")]
-    public new float range = 6f;
+    public float range = 6f;
 
     void Awake()
     {
