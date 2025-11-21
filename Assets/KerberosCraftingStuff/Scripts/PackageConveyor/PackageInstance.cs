@@ -9,26 +9,26 @@ public class PackageInstance : MonoBehaviour
     // public GameObject towerPrefab;
 
     public PackageConveyorManager conveyor;
-    private Camera mainCamera;
-    
+    //private Camera mainCamera;
+
     [Header("Dragging Config")]
     public bool isDragging { get; set; }
     public Vector3 originalPos { get; set; }
 
-    private float zOffset;
+    /*private float zOffset;
     private Vector3 offset;
     
     void Awake()
     {
         mainCamera = Camera.main;
-    }
+    }*/
 
     void Start()
     {
         conveyor.AddPackage(this);
     }
 
-    void Update()
+    /*void Update()
     {
         var mouse = Mouse.current;
 
@@ -73,5 +73,5 @@ public class PackageInstance : MonoBehaviour
 
             transform.position = originalPos;
         }
-    }
+    }*/
 }

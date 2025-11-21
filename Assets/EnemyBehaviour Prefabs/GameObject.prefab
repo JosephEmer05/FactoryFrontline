@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1314481256850418958}
+  - component: {fileID: 7970266762961431222}
+  - component: {fileID: 6703678484411676386}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -32,6 +34,39 @@ Transform:
   - {fileID: 7554412240082114940}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7970266762961431222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5249715990555216191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cfcf1bb83504b640944e853cabec2bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerClickable
+--- !u!65 &6703678484411676386
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5249715990555216191}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.24067, z: 1.1573}
+  m_Center: {x: 0, y: 1.2253639, z: -0.07865}
 --- !u!1001 &8216481328398160030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92,11 +127,71 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8945604183384091598, guid: bc07b79154aa88d4aadaf163a15ea588, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8945604183384091598, guid: bc07b79154aa88d4aadaf163a15ea588, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5854760106543347528}
   m_SourcePrefab: {fileID: 100100000, guid: bc07b79154aa88d4aadaf163a15ea588, type: 3}
+--- !u!1 &1018910448840751952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8945604183384091598, guid: bc07b79154aa88d4aadaf163a15ea588, type: 3}
+  m_PrefabInstance: {fileID: 8216481328398160030}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5854760106543347528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018910448840751952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acec4a29f45b5694f8d89e740d1cbd04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Alltowerscript
+  config: {fileID: 0}
+  continuousConfigSync: 0
+  bodyType: 0
+  coreType: 0
+  weaponType: 0
+  turretEnabled: 1
+  autoTargeting: 1
+  debugDraw: 0
+  enableDamageReduction: 1
+  enableDebuffResistance: 1
+  enableSingleShot: 1
+  singleHoming: 1
+  singleIgnoreTurretCollision: 1
+  enableSpreadShot: 0
+  spreadRandomize: 1
+  spreadHoming: 0
+  enableArcCannon: 0
+  arcHoming: 1
+  singleProjectilePrefab: {fileID: 0}
+  spreadProjectilePrefab: {fileID: 0}
+  arcProjectilePrefab: {fileID: 0}
+  spawnOffset: 1
+  singleCooldown: 0
+  singleProjectileSpeed: 15
+  spreadCooldown: 1
+  spreadProjectileSpeed: 15
+  spreadPelletCount: 8
+  spreadAngle: 20
+  arcCooldown: 2
+  arcProjectileSpeed: 15
+  bodyHp: 100
+  damageReductionPercent: 0
+  debuffResistance: 0
+  coreFireRate: 1
+  coreDamage: 10
+  coreRange: 5
 --- !u!4 &7554412240082114940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1932158400544131554, guid: bc07b79154aa88d4aadaf163a15ea588, type: 3}
