@@ -125,19 +125,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b4c9e5d5ce9c04f8a370c36d522d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExtensionCrawler
-  health: 20
+  health: 50
   speed: 3.5
   atkRange: 0.8
-  atkDmg: 3
+  atkDmg: 4
   atkCooldown: 1
   towerLayer:
     serializedVersion: 2
     m_Bits: 256
   baseLayer:
     serializedVersion: 2
-    m_Bits: 128
-  attachRange: 1.5
-  wrapDamage: 2
+    m_Bits: 512
+  attachRange: 2
+  wrapDamage: 4
   damageInterval: 0.5
   latchDuration: 3
 --- !u!54 &-2516047216229926726

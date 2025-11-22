@@ -21,10 +21,12 @@ public class PackageConveyorManager : MonoBehaviour
 
     public void AddPackage(PackageInstance package)
     {
-        if (!packages.Contains(package))
+        /*if (!packages.Contains(package))
         {
             packages.Add(package);
-        }
+        }*/
+
+        packages.Add(package);
 
         SortByPosition();
     }

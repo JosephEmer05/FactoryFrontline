@@ -8,8 +8,8 @@ public class PanelController : MonoBehaviour
     [SerializeField] private Button UICraftingButton;
 
     [Header("Animation Settings")]
-    private float showPosX = 200f;
-    private float hidePosX = -600f;
+    public float showPosX = 200f;
+    public float hidePosX = -600f;
     private float lerpSpeed = 10f;
 
     private bool isOpen = false;

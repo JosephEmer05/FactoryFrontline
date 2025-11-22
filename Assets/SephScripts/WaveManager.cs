@@ -16,7 +16,7 @@ public class Wave
     public WaveEntry[] enemies;
     public bool useLowSpawners = true;
     public bool useHighSpawners = false;
-    public float timeAfterWave = 8f;
+    public float timeAfterWave = 8f;  // Delay after wave finishes before starting next wave
 }
 
 public class WaveManager : MonoBehaviour
@@ -29,6 +29,7 @@ public class WaveManager : MonoBehaviour
     public Wave[] waves;
 
     private int currentWave = -1;
+
     void Start()
     {
         StartCoroutine(WaveRoutine());
@@ -36,7 +37,7 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator WaveRoutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f);  // Initial delay before first wave starts
 
         for (int i = 0; i < waves.Length; i++)
         {
@@ -44,10 +45,14 @@ public class WaveManager : MonoBehaviour
             Wave wave = waves[i];
 
             Debug.Log($"--- Starting {wave.waveName} ---");
+
+            // Wait for the 'timeAfterWave' before actually spawning the enemies
+            yield return new WaitForSeconds(wave.timeAfterWave);  // Delay before spawning begins
+
+            // Start spawning the wave
             yield return StartCoroutine(SpawnWave(wave));
 
             Debug.Log($"--- {wave.waveName} finished ---");
-            yield return new WaitForSeconds(wave.timeAfterWave);
         }
 
         Debug.Log("All waves completed!");
@@ -77,6 +82,7 @@ public class WaveManager : MonoBehaviour
                     }
                 }
 
+                // Delay between enemy spawns
                 yield return new WaitForSeconds(entry.spawnDelay);
             }
         }

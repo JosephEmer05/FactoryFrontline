@@ -75,7 +75,7 @@ public class TowerCraftingManager : MonoBehaviour
             instance.conveyor = packageConveyor;
 
             // !! Debug
-            Debug.Log("Successfully crafted!");
+            Debug.Log("Successfully crafted: " + packagePrefab);
         }
 
         baseSlotUI.ClearSlot();

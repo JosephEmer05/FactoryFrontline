@@ -125,17 +125,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 690393090f117d94ea076f1d94f46a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Roombot
-  health: 30
+  health: 80
   speed: 3
   atkRange: 0.8
-  atkDmg: 5
+  atkDmg: 8
   atkCooldown: 2
   towerLayer:
     serializedVersion: 2
     m_Bits: 256
   baseLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 512
+  scanRange: 8
 --- !u!54 &6986310905520486214
 Rigidbody:
   m_ObjectHideFlags: 0

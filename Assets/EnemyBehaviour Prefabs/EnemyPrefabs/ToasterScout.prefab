@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3616a0f7fb724d74085993a8e893ffc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToasterScout
-  health: 25
-  speed: 2
+  health: 60
+  speed: 2.5
   atkRange: 4
   atkDmg: 3
   atkCooldown: 1
@@ -167,7 +167,7 @@ MonoBehaviour:
     m_Bits: 256
   baseLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 512
   projectilePrefab: {fileID: 2760741985138040642, guid: 97d91b5d320db8544b84b2d4ea9cc70b, type: 3}
   firePoint: {fileID: 8687722220401977677}
   projectileSpeed: 5

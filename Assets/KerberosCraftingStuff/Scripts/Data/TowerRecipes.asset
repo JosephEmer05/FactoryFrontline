@@ -15,7 +15,7 @@ MonoBehaviour:
   recipes:
   - towerName: Tower 1
     towerID: 1
-    packagePrefab: {fileID: 376983714577661251, guid: a47d3e5b363bd434d8380b340d9510dd, type: 3}
+    packagePrefab: {fileID: 8945604183384091598, guid: bc07b79154aa88d4aadaf163a15ea588, type: 3}
     weapID: 5
     coreID: 3
     baseID: 1

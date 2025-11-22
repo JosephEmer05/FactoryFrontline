@@ -8,6 +8,9 @@ public class TowerSelectionManager : MonoBehaviour
     private GameObject selectedTower;
     private List<TowerSlot> allSlots = new List<TowerSlot>();
 
+    [Header("Placement Settings")]
+    public float towerPlacementY = 0f;
+
     void Awake()
     {
         Instance = this;
@@ -43,7 +46,13 @@ public class TowerSelectionManager : MonoBehaviour
 
         if (!slot.isOccupied)
         {
-            selectedTower.transform.position = slot.transform.position;
+            Vector3 slotPos = slot.transform.position;
+            selectedTower.transform.position = new Vector3(
+                slotPos.x,
+                towerPlacementY,
+                slotPos.z
+            );
+
             slot.isOccupied = true;
             DeselectTower();
         }
