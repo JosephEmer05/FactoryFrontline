@@ -16601,6 +16601,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CraftingPanelController
   UICraftingPanel: {fileID: 1784850645}
   UICraftingButton: {fileID: 1340829473}
+  showPosX: 200
+  hidePosX: -600
 --- !u!4 &1643824067
 Transform:
   m_ObjectHideFlags: 0

@@ -21,43 +21,43 @@ MonoBehaviour:
     baseID: 1
   - towerName: Tower 2
     towerID: 2
-    packagePrefab: {fileID: 376983714577661251, guid: aeb3a3a11dad4fc4e9d53cbb205f88ca, type: 3}
+    packagePrefab: {fileID: 6349673809926635890, guid: f22f23d7c68b5b3499a646ffedb4886c, type: 3}
     weapID: 5
     coreID: 4
     baseID: 1
   - towerName: Tower 3
     towerID: 3
-    packagePrefab: {fileID: 376983714577661251, guid: 96a9a2dab2bd49a4cb132b975b661693, type: 3}
+    packagePrefab: {fileID: 96272713381866100, guid: 0e158046edc1911459b05ca5b2b4452e, type: 3}
     weapID: 6
     coreID: 3
     baseID: 1
   - towerName: Tower 4
     towerID: 4
-    packagePrefab: {fileID: 376983714577661251, guid: 1447582a67f192e47ae01635b2eb41cc, type: 3}
+    packagePrefab: {fileID: 7720548208542433513, guid: 73c019cbed154b74d829192b7f50fdbc, type: 3}
     weapID: 6
     coreID: 4
     baseID: 1
   - towerName: Tower 5
     towerID: 5
-    packagePrefab: {fileID: 376983714577661251, guid: ed752e85ecb02264da5c66e9c13592da, type: 3}
+    packagePrefab: {fileID: 5508023994246108367, guid: d2a38abd0aff2044682f05e500482703, type: 3}
     weapID: 5
     coreID: 3
     baseID: 2
   - towerName: Tower 6
     towerID: 6
-    packagePrefab: {fileID: 376983714577661251, guid: 650b506a0df85664f866de09ee6c1f85, type: 3}
+    packagePrefab: {fileID: 3418100763518854904, guid: d301155e19de5f94aa98e184e39e16a4, type: 3}
     weapID: 5
     coreID: 4
     baseID: 2
   - towerName: Tower 7
     towerID: 7
-    packagePrefab: {fileID: 376983714577661251, guid: 1c5cbfaea00536a4488c48ed323b08b3, type: 3}
+    packagePrefab: {fileID: 4313774321223401437, guid: 107a2f812a7595243af643a00f48b513, type: 3}
     weapID: 6
     coreID: 3
     baseID: 2
   - towerName: Tower 8
     towerID: 8
-    packagePrefab: {fileID: 376983714577661251, guid: 36e40ea022c289747bce2c48a07dfa7f, type: 3}
+    packagePrefab: {fileID: 7250309283961632248, guid: d7226c2d3ccd4c649b3814479e250126, type: 3}
     weapID: 6
     coreID: 4
     baseID: 2

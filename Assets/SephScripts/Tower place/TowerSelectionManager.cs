@@ -44,6 +44,9 @@ public class TowerSelectionManager : MonoBehaviour
     {
         if (selectedTower == null) return;
 
+        // :To remove the conveyor ordering logic
+        PackageInstance packInstance = selectedTower.GetComponent<PackageInstance>();
+        
         if (!slot.isOccupied)
         {
             Vector3 slotPos = slot.transform.position;
@@ -53,6 +56,9 @@ public class TowerSelectionManager : MonoBehaviour
                 slotPos.z
             );
 
+            // Remove conveyor reordering logic
+            packInstance.conveyor.RemovePackage(packInstance);
+            // remove placement logic here
             slot.isOccupied = true;
             DeselectTower();
         }

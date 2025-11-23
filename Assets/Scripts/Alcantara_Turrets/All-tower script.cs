@@ -44,7 +44,7 @@ public class Alltowerscript : MonoBehaviour
         if (!turretEnabled) return;
         if (autoTargeting) _currentTarget = AcquireTarget();
         if (_currentTarget == null) return;
-        Vector3 dir = (_currentTarget.position - transform.position).normalized; if (dir != Vector3.zero) transform.rotation = Quaternion.LookRotation(dir);
+        //Vector3 dir = (_currentTarget.position - transform.position).normalized; if (dir != Vector3.zero) transform.rotation = Quaternion.LookRotation(dir);
         if (enableSingleShot && weaponType == WeaponType.Single_turret) TryFireSingle();
         else if (enableSpreadShot && weaponType == WeaponType.Spread_turret) TryFireSpread();
         else if (enableArcCannon && weaponType == WeaponType.Arc_Cannon) TryFireArc();

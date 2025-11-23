@@ -23,7 +23,7 @@ public class PackageInstance : MonoBehaviour
         mainCamera = Camera.main;
     }*/
 
-    void Awake()
+    void Start()
     {
         conveyor.AddPackage(this);
     }

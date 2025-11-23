@@ -13,7 +13,10 @@ GameObject:
   - component: {fileID: 5623433623425207940}
   - component: {fileID: 6818556513978024638}
   - component: {fileID: 7897428605825606944}
-  m_Layer: 6
+  - component: {fileID: -4653214246005158298}
+  - component: {fileID: 8978346199656663042}
+  - component: {fileID: 3630050501134596622}
+  m_Layer: 8
   m_Name: Tower 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 6349673809926635890}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 520.69, y: 1.01, z: 18.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -110,10 +113,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6307144
-  m_Height: 2.3661375
+  m_Radius: 0.5
+  m_Height: 2.35
   m_Direction: 1
-  m_Center: {x: -0.07265031, y: 0.18306875, z: -0.058063984}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7897428605825606944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,3 +130,76 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestTower
   health: 50
+--- !u!114 &-4653214246005158298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6349673809926635890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acec4a29f45b5694f8d89e740d1cbd04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Alltowerscript
+  config: {fileID: 0}
+  continuousConfigSync: 0
+  bodyType: 0
+  coreType: 1
+  weaponType: 0
+  turretEnabled: 1
+  autoTargeting: 1
+  debugDraw: 0
+  enableDamageReduction: 1
+  enableDebuffResistance: 1
+  enableSingleShot: 1
+  singleHoming: 1
+  singleIgnoreTurretCollision: 1
+  enableSpreadShot: 0
+  spreadRandomize: 1
+  spreadHoming: 0
+  enableArcCannon: 0
+  arcHoming: 1
+  singleProjectilePrefab: {fileID: 0}
+  spreadProjectilePrefab: {fileID: 0}
+  arcProjectilePrefab: {fileID: 0}
+  spawnOffset: 1
+  singleCooldown: 0
+  singleProjectileSpeed: 15
+  spreadCooldown: 1
+  spreadProjectileSpeed: 15
+  spreadPelletCount: 8
+  spreadAngle: 20
+  arcCooldown: 2
+  arcProjectileSpeed: 15
+  bodyHp: 100
+  damageReductionPercent: 0
+  debuffResistance: 0
+  coreFireRate: 1
+  coreDamage: 10
+  coreRange: 5
+--- !u!114 &8978346199656663042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6349673809926635890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cfcf1bb83504b640944e853cabec2bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerClickable
+--- !u!114 &3630050501134596622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6349673809926635890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915306bdeb581444cbedc041740b06b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PackageInstance
+  conveyor: {fileID: 0}
