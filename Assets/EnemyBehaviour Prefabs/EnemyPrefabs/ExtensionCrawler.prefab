@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b4c9e5d5ce9c04f8a370c36d522d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExtensionCrawler
-  health: 50
+  health: 150
   speed: 3.5
   atkRange: 0.8
   atkDmg: 4

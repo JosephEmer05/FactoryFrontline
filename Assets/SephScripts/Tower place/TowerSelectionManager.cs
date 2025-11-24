@@ -8,9 +8,6 @@ public class TowerSelectionManager : MonoBehaviour
     private GameObject selectedTower;
     private List<TowerSlot> allSlots = new List<TowerSlot>();
 
-    [Header("Placement Settings")]
-    public float towerPlacementY = 0f;
-
     void Awake()
     {
         Instance = this;
@@ -44,22 +41,22 @@ public class TowerSelectionManager : MonoBehaviour
     {
         if (selectedTower == null) return;
 
-        // :To remove the conveyor ordering logic
-        PackageInstance packInstance = selectedTower.GetComponent<PackageInstance>();
-        
         if (!slot.isOccupied)
         {
+            PackageInstance pkg = selectedTower.GetComponent<PackageInstance>();
+
             Vector3 slotPos = slot.transform.position;
             selectedTower.transform.position = new Vector3(
                 slotPos.x,
-                towerPlacementY,
+                slot.placementHeight,
                 slotPos.z
             );
 
-            // Remove conveyor reordering logic
-            packInstance.conveyor.RemovePackage(packInstance);
-            // remove placement logic here
+            pkg.conveyor.RemovePackage(pkg);
+
             slot.isOccupied = true;
+            slot.UpdateColor();
+
             DeselectTower();
         }
     }

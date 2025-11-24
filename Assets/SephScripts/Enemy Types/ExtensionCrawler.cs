@@ -45,7 +45,6 @@ public class ExtensionCrawler : BaseEnemy
         float timer = 0f;
         TestTower tower = targetTower.GetComponent<TestTower>();
 
-        // Damage over time while latched
         while (tower != null && timer < latchDuration)
         {
             tower.TakeDamage(wrapDamage);
