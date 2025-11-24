@@ -17,7 +17,7 @@ public class Roombot : BaseEnemy
         {
             if (!isAttacking)
             {
-                Transform baseTransform = FindBasePhysics();
+                Transform baseTransform = FindBasePhysics(atkRange);
                 if (baseTransform != null)
                 {
                     targetBase = baseTransform;
@@ -26,7 +26,7 @@ public class Roombot : BaseEnemy
                     continue;
                 }
 
-                Transform tower = FindTowerPhysics();
+                Transform tower = FindTowerPhysics(scanRange);
                 if (tower != null)
                 {
                     targetTower = tower;
@@ -38,16 +38,17 @@ public class Roombot : BaseEnemy
         }
     }
 
-    Transform FindTowerPhysics()
+    Transform FindTowerPhysics(float range)
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, scanRange, towerLayer);
+        Collider[] hits = Physics.OverlapSphere(transform.position, range, towerLayer);
         if (hits.Length > 0)
             return hits[0].transform;
         return null;
     }
-    Transform FindBasePhysics()
+
+    Transform FindBasePhysics(float range)
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, scanRange, baseLayer);
+        Collider[] hits = Physics.OverlapSphere(transform.position, range, baseLayer);
         if (hits.Length > 0)
             return hits[0].transform;
         return null;
@@ -61,18 +62,16 @@ public class Roombot : BaseEnemy
         {
             if (targetTower == null)
             {
-                targetTower = FindTowerPhysics();
+                targetTower = FindTowerPhysics(scanRange);
                 if (targetTower == null)
                     break;
             }
 
             float dist = Vector3.Distance(transform.position, targetTower.position);
-
             if (dist > atkRange)
                 break;
 
             TestTower towerComp = targetTower.GetComponent<TestTower>();
-
             if (towerComp == null)
             {
                 targetTower = null;

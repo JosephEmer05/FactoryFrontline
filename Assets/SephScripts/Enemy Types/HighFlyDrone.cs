@@ -38,7 +38,6 @@ public class HighFlyDrone : BaseEnemy
 
         while (tower != null)
         {
-            // Move toward tower until within attack range
             while (tower != null && Vector3.Distance(transform.position, tower.position) > atkRange)
             {
                 transform.position = Vector3.MoveTowards(transform.position, tower.position, speed * Time.deltaTime);
@@ -50,7 +49,6 @@ public class HighFlyDrone : BaseEnemy
 
             if (tower == null) break;
 
-            // Attack once
             TestTower towerComp = tower.GetComponent<TestTower>();
             if (towerComp != null)
             {
@@ -67,7 +65,6 @@ public class HighFlyDrone : BaseEnemy
                 break;
             }
 
-            // Back off after each attack (UP + RIGHT)
             Vector3 retreatPoint = transform.position + (Vector3.up * retreatHeight) + (Vector3.right * retreatDistance);
             float retreatTimer = 0f;
             while (Vector3.Distance(transform.position, retreatPoint) > 0.1f && retreatTimer < 2f)
@@ -76,8 +73,6 @@ public class HighFlyDrone : BaseEnemy
                 retreatTimer += Time.deltaTime;
                 yield return null;
             }
-
-            // Return to tower and repeat
         }
 
         isEngaging = false;

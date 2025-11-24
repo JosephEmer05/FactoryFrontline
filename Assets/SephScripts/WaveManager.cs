@@ -7,6 +7,9 @@ public class WaveEntry
     public GameObject enemyPrefab;
     public int count = 1;
     public float spawnDelay = 0.5f;
+
+    [Header("Specific Spawners For This Enemy Type (Optional)")]
+    public EnemySpawner[] specificSpawners;
 }
 
 [System.Serializable]
@@ -14,9 +17,12 @@ public class Wave
 {
     public string waveName;
     public WaveEntry[] enemies;
+
+    [Header("Fallback Spawner Settings")]
     public bool useLowSpawners = true;
     public bool useHighSpawners = false;
-    public float timeAfterWave = 8f;  // Delay after wave finishes before starting next wave
+
+    public float timeAfterWave = 8f;
 }
 
 public class WaveManager : MonoBehaviour
@@ -37,7 +43,7 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator WaveRoutine()
     {
-        yield return new WaitForSeconds(2f);  // Initial delay before first wave starts
+        yield return new WaitForSeconds(2f);
 
         for (int i = 0; i < waves.Length; i++)
         {
@@ -46,10 +52,8 @@ public class WaveManager : MonoBehaviour
 
             Debug.Log($"--- Starting {wave.waveName} ---");
 
-            // Wait for the 'timeAfterWave' before actually spawning the enemies
-            yield return new WaitForSeconds(wave.timeAfterWave);  // Delay before spawning begins
+            yield return new WaitForSeconds(wave.timeAfterWave);
 
-            // Start spawning the wave
             yield return StartCoroutine(SpawnWave(wave));
 
             Debug.Log($"--- {wave.waveName} finished ---");
@@ -64,25 +68,35 @@ public class WaveManager : MonoBehaviour
         {
             for (int i = 0; i < entry.count; i++)
             {
-                if (wave.useLowSpawners)
+                if (entry.specificSpawners != null && entry.specificSpawners.Length > 0)
                 {
-                    foreach (EnemySpawner spawner in lowSpawners)
+                    foreach (EnemySpawner spawner in entry.specificSpawners)
                     {
                         if (spawner != null)
                             spawner.SpawnEnemy(entry.enemyPrefab);
                     }
                 }
-
-                if (wave.useHighSpawners)
+                else
                 {
-                    foreach (EnemySpawner spawner in highSpawners)
+                    if (wave.useLowSpawners)
                     {
-                        if (spawner != null)
-                            spawner.SpawnEnemy(entry.enemyPrefab);
+                        foreach (EnemySpawner spawner in lowSpawners)
+                        {
+                            if (spawner != null)
+                                spawner.SpawnEnemy(entry.enemyPrefab);
+                        }
+                    }
+
+                    if (wave.useHighSpawners)
+                    {
+                        foreach (EnemySpawner spawner in highSpawners)
+                        {
+                            if (spawner != null)
+                                spawner.SpawnEnemy(entry.enemyPrefab);
+                        }
                     }
                 }
 
-                // Delay between enemy spawns
                 yield return new WaitForSeconds(entry.spawnDelay);
             }
         }
