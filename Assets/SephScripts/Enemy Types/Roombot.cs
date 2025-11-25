@@ -17,7 +17,8 @@ public class Roombot : BaseEnemy
         {
             if (!isAttacking)
             {
-                Transform baseTransform = FindBasePhysics(atkRange);
+                // Base priority
+                Transform baseTransform = DetectBaseInRange();
                 if (baseTransform != null)
                 {
                     targetBase = baseTransform;
@@ -46,20 +47,21 @@ public class Roombot : BaseEnemy
         return null;
     }
 
-    Transform FindBasePhysics(float range)
-    {
-        Collider[] hits = Physics.OverlapSphere(transform.position, range, baseLayer);
-        if (hits.Length > 0)
-            return hits[0].transform;
-        return null;
-    }
-
     IEnumerator AttackTower()
     {
         isAttacking = true;
 
         while (true)
         {
+            // Switch to base if appears
+            Transform baseInRange = DetectBaseInRange();
+            if (baseInRange != null)
+            {
+                targetBase = baseInRange;
+                StartCoroutine(AttackBase());
+                break;
+            }
+
             if (targetTower == null)
             {
                 targetTower = FindTowerPhysics(scanRange);

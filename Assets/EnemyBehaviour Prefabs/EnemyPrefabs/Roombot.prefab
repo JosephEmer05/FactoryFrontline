@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Roombot
   health: 180
   speed: 3
-  atkRange: 0.8
+  atkRange: 1
   atkDmg: 8
   atkCooldown: 2
   towerLayer:

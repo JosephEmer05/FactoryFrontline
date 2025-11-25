@@ -14,7 +14,7 @@ public class HighFlyDrone : BaseEnemy
 
     protected override void Update()
     {
-        if (!isEngaging)
+        if (!isEngaging && !isAttacking) // avoid moving while base attack happening
         {
             base.Update();
             ScanForTower();
@@ -23,6 +23,15 @@ public class HighFlyDrone : BaseEnemy
 
     void ScanForTower()
     {
+        // Prioritize base if inside range
+        Transform baseInRange = DetectBaseInRange();
+        if (baseInRange != null)
+        {
+            targetBase = baseInRange;
+            StartCoroutine(AttackBase());
+            return;
+        }
+
         Collider[] hits = Physics.OverlapSphere(transform.position, scanRange, towerLayer);
         if (hits.Length > 0)
         {
@@ -38,6 +47,15 @@ public class HighFlyDrone : BaseEnemy
 
         while (tower != null)
         {
+            // If base appears during engagement, switch
+            Transform baseInRange = DetectBaseInRange();
+            if (baseInRange != null)
+            {
+                targetBase = baseInRange;
+                StartCoroutine(AttackBase());
+                break;
+            }
+
             while (tower != null && Vector3.Distance(transform.position, tower.position) > atkRange)
             {
                 transform.position = Vector3.MoveTowards(transform.position, tower.position, speed * Time.deltaTime);
@@ -45,6 +63,16 @@ public class HighFlyDrone : BaseEnemy
                 if (dir != Vector3.zero)
                     transform.rotation = Quaternion.LookRotation(dir);
                 yield return null;
+
+                // Poll base during approach
+                baseInRange = DetectBaseInRange();
+                if (baseInRange != null)
+                {
+                    targetBase = baseInRange;
+                    StartCoroutine(AttackBase());
+                    tower = null;
+                    break;
+                }
             }
 
             if (tower == null) break;
@@ -72,6 +100,16 @@ public class HighFlyDrone : BaseEnemy
                 transform.position = Vector3.MoveTowards(transform.position, retreatPoint, retreatSpeed * Time.deltaTime);
                 retreatTimer += Time.deltaTime;
                 yield return null;
+
+                // Poll base during retreat
+                Transform baseInRangeRetreat = DetectBaseInRange();
+                if (baseInRangeRetreat != null)
+                {
+                    targetBase = baseInRangeRetreat;
+                    StartCoroutine(AttackBase());
+                    tower = null;
+                    break;
+                }
             }
         }
 

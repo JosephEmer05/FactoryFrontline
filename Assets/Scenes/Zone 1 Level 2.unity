@@ -33416,7 +33416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53b0dc18f58a5e418c73317013fc659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestBase
-  health: 200
+  basehealth: 10
 --- !u!65 &1601034955
 BoxCollider:
   m_ObjectHideFlags: 0

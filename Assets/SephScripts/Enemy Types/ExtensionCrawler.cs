@@ -13,15 +13,24 @@ public class ExtensionCrawler : BaseEnemy
 
     protected override void Update()
     {
-        if (!isWrapping)
+        if (!isWrapping && !isAttacking)
         {
             base.Update();
-            ScanForTower();
+            ScanForTargets();
         }
     }
 
-    void ScanForTower()
+    void ScanForTargets()
     {
+        // Base priority
+        Transform baseInRange = DetectBaseInRange();
+        if (baseInRange != null)
+        {
+            targetBase = baseInRange;
+            StartCoroutine(AttackBase());
+            return;
+        }
+
         Collider[] hits = Physics.OverlapSphere(transform.position, attachRange, towerLayer);
         if (hits.Length > 0)
         {
@@ -38,6 +47,16 @@ public class ExtensionCrawler : BaseEnemy
 
         while (Vector3.Distance(transform.position, latchPoint) > 0.1f)
         {
+            // Switch to base if appears
+            Transform baseInRange = DetectBaseInRange();
+            if (baseInRange != null)
+            {
+                targetBase = baseInRange;
+                StartCoroutine(AttackBase());
+                isWrapping = false;
+                yield break;
+            }
+
             transform.position = Vector3.MoveTowards(transform.position, latchPoint, speed * Time.deltaTime);
             yield return null;
         }
@@ -47,6 +66,16 @@ public class ExtensionCrawler : BaseEnemy
 
         while (tower != null && timer < latchDuration)
         {
+            // Poll base while latched
+            Transform baseInRange = DetectBaseInRange();
+            if (baseInRange != null)
+            {
+                targetBase = baseInRange;
+                StartCoroutine(AttackBase());
+                isWrapping = false;
+                yield break;
+            }
+
             tower.TakeDamage(wrapDamage);
             yield return new WaitForSeconds(damageInterval);
             timer += damageInterval;
