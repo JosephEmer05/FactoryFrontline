@@ -84,6 +84,6 @@ public class ExtensionCrawler : BaseEnemy
         }
 
         isWrapping = false;
-        Destroy(gameObject);
+        Die();
     }
 }

@@ -20,7 +20,6 @@ public abstract class BaseEnemy : MonoBehaviour
     protected Transform targetTower;
     protected Transform targetBase;
 
-    // Prevent multiple base-hit processing
     private bool hasHitBase = false;
 
     public virtual void AssignPath(Transform[] path)
@@ -78,14 +77,13 @@ public abstract class BaseEnemy : MonoBehaviour
     protected void DealDamage(Transform target, float damage)
     {
         if (target == null) return;
-        // Try TestTower (keep original damage)
         var towerComp = target.GetComponent<TestTower>();
         if (towerComp != null)
         {
             towerComp.TakeDamage(damage);
             return;
         }
-        // Try TestBase (force 1 damage always)
+        // (force 1 damage always)
         var baseComp = target.GetComponent<TestBase>();
         if (baseComp != null)
         {
@@ -135,7 +133,7 @@ public abstract class BaseEnemy : MonoBehaviour
         targetBase = baseTransform;
         // Apply a single hit on collision then destroy
         DealDamage(baseTransform, atkDmg);
-        Destroy(gameObject);
+        Die();
     }
 
     // Trigger-based collision
@@ -164,11 +162,14 @@ public abstract class BaseEnemy : MonoBehaviour
             Die();
     }
 
-    protected virtual void Die()
+    public virtual void Die()
     {
-        onEnemyDied?.Invoke(this);
+        // Inform WaveManager
+        if (WaveManager.Instance != null)
+            WaveManager.Instance.OnEnemyDied();
         Destroy(gameObject);
     }
+
 
     protected Transform FindClosestTower()
     {

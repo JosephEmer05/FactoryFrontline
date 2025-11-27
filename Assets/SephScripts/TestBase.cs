@@ -16,6 +16,7 @@ public class TestBase : MonoBehaviour
 
     void GameOver()
     {
+        UIManager.Instance.ShowGameOverScreen();
         Debug.Log("Base Destroyed! Game Over!");
     }
 }
