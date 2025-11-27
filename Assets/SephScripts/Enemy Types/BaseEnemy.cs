@@ -3,6 +3,8 @@ using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour
 {
+    public System.Action<BaseEnemy> onEnemyDied;
+
     [Header("General Settings")]
     public float health = 20f;
     public float speed = 2f;
@@ -164,6 +166,7 @@ public abstract class BaseEnemy : MonoBehaviour
 
     protected virtual void Die()
     {
+        onEnemyDied?.Invoke(this);
         Destroy(gameObject);
     }
 
