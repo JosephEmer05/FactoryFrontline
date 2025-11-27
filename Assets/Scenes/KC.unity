@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 690393090f117d94ea076f1d94f46a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Roombot
-  health: 20
+  health: 50
   speed: 2
   atkRange: 1
   atkDmg: 3
@@ -282,6 +282,7 @@ MonoBehaviour:
   baseLayer:
     serializedVersion: 2
     m_Bits: 0
+  scanRange: 8
 --- !u!1 &23255189
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,12 +343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b4e519b32eec944963137fb03502ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemSpawner
-  items:
-  - {fileID: 486568844507105512, guid: 453cb8e8e22671f41b5403a1869e0a25, type: 3}
-  spawnPoint: {fileID: 23255190}
-  endPoint: {fileID: 0}
-  spawnInterval: 5
-  maxItems: 6
 --- !u!4 &156535992
 Transform:
   m_ObjectHideFlags: 0
@@ -735,7 +730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 690393090f117d94ea076f1d94f46a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Roombot
-  health: 20
+  health: 50
   speed: 2
   atkRange: 1
   atkDmg: 3
@@ -746,6 +741,7 @@ MonoBehaviour:
   baseLayer:
     serializedVersion: 2
     m_Bits: 0
+  scanRange: 8
 --- !u!54 &787299777
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -982,7 +978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 690393090f117d94ea076f1d94f46a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Roombot
-  health: 20
+  health: 50
   speed: 2
   atkRange: 1
   atkDmg: 3
@@ -993,6 +989,7 @@ MonoBehaviour:
   baseLayer:
     serializedVersion: 2
     m_Bits: 0
+  scanRange: 8
 --- !u!54 &1075392761
 Rigidbody:
   m_ObjectHideFlags: 0

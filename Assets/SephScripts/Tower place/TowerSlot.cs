@@ -4,6 +4,9 @@ public class TowerSlot : MonoBehaviour
 {
     public bool isOccupied = false;
 
+    [Header("Height Settings")]
+    public float placementHeight = 0f;
+
     private MeshRenderer mr;
     private Color defaultColor;
 
@@ -16,11 +19,13 @@ public class TowerSlot : MonoBehaviour
         defaultColor = mr.material.color;
 
         TowerSelectionManager.Instance.RegisterSlot(this);
+        UpdateColor();
     }
 
     public void ShowSlot()
     {
         mr.enabled = true;
+        UpdateColor();
     }
 
     public void HideSlot()
@@ -28,18 +33,26 @@ public class TowerSlot : MonoBehaviour
         mr.enabled = false;
     }
 
+    public void UpdateColor()
+    {
+        mr.material.color = isOccupied ? occupiedColor : defaultColor;
+    }
+
     private void OnMouseEnter()
     {
         if (!mr.enabled) return;
 
-        mr.material.color = isOccupied ? occupiedColor : availableColor;
+        if (!isOccupied)
+            mr.material.color = availableColor;
+        else
+            mr.material.color = occupiedColor;
     }
 
     private void OnMouseExit()
     {
         if (!mr.enabled) return;
 
-        mr.material.color = defaultColor;
+        UpdateColor();
     }
 
     private void OnMouseDown()

@@ -166,9 +166,9 @@ MonoBehaviour:
   spawnOffset: 1
   singleCooldown: 0
   singleProjectileSpeed: 15
-  spreadCooldown: 1
+  spreadCooldown: 3
   spreadProjectileSpeed: 15
-  spreadPelletCount: 8
+  spreadPelletCount: 4
   spreadAngle: 20
   arcCooldown: 2
   arcProjectileSpeed: 15

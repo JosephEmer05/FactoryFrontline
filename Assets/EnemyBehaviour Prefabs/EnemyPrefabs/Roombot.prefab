@@ -125,9 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 690393090f117d94ea076f1d94f46a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Roombot
-  health: 80
+  health: 180
   speed: 3
-  atkRange: 0.8
+  atkRange: 1
   atkDmg: 8
   atkCooldown: 2
   towerLayer:
