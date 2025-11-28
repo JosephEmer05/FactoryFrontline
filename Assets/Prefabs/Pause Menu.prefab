@@ -229,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseCanvas: {fileID: 6899217071495534428}
   resumeButton: {fileID: 4007408921924841345}
+  pauseButton: {fileID: 0}
   buttonAudioSource: {fileID: 0}
   buttonClickClip: {fileID: 0}
   buttonSfxVolume: 0.5
@@ -1812,7 +1813,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 40
   m_TargetDisplay: 0
 --- !u!114 &782147516009125628
 MonoBehaviour:

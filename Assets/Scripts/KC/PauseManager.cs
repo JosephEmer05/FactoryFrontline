@@ -6,11 +6,12 @@ public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseCanvas;
     [SerializeField] private Button resumeButton;
+    [SerializeField] private Button pauseButton;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource buttonAudioSource; //Audio source for button click SFX
-    [SerializeField] private AudioClip buttonClickClip; //Button click sound clip
-    [SerializeField][Range(0f, 1f)] private float buttonSfxVolume = 0.5f; //Volume for button click SFX
+    [SerializeField] private AudioSource buttonAudioSource;
+    [SerializeField] private AudioClip buttonClickClip;
+    [SerializeField][Range(0f, 1f)] private float buttonSfxVolume = 0.5f;
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class PauseManager : MonoBehaviour
             buttonAudioSource = gameObject.AddComponent<AudioSource>();
             buttonAudioSource.playOnAwake = false;
             buttonAudioSource.loop = false;
-            buttonAudioSource.spatialBlend = 0f; //2D sound for UI
+            buttonAudioSource.spatialBlend = 0f;
 
             AudioManager audioManager = FindFirstObjectByType<AudioManager>();
             if (audioManager != null && audioManager.GetMixer() != null)
@@ -39,31 +40,48 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1f;
 
         if (resumeButton != null)
-            resumeButton.onClick.AddListener(TogglePause);
+            resumeButton.onClick.AddListener(ResumeGame);
+
+        if (pauseButton != null)
+            pauseButton.onClick.AddListener(PauseGame);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            TogglePause();
+            //If paused, resume. If not paused, pause.
+            if (pauseCanvas.activeSelf)
+                ResumeGame();
+            else
+                PauseGame();
         }
     }
 
-    public void TogglePause()
+    private void PlayClickSound()
     {
         if (buttonAudioSource != null && buttonClickClip != null)
         {
             buttonAudioSource.PlayOneShot(buttonClickClip, buttonSfxVolume);
         }
+    }
 
-        bool shouldPause = !pauseCanvas.activeSelf;
-        pauseCanvas.SetActive(shouldPause);
-        Time.timeScale = shouldPause ? 0f : 1f;
+    public void PauseGame()
+    {
+        PlayClickSound();
+        pauseCanvas.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        PlayClickSound();
+        pauseCanvas.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     private void OnDestroy()
     {
-        Time.timeScale = 1f; //Resets time when destroyed
+        Time.timeScale = 1f;
     }
 }
