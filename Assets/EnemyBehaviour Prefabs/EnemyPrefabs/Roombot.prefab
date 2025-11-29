@@ -136,7 +136,7 @@ MonoBehaviour:
   baseLayer:
     serializedVersion: 2
     m_Bits: 512
-  scanRange: 8
+  scanRange: 1
 --- !u!54 &6986310905520486214
 Rigidbody:
   m_ObjectHideFlags: 0

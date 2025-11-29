@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 2881297834983353323}
   - component: {fileID: 3003909619540331402}
   - component: {fileID: 8522108265716131520}
-  - component: {fileID: 7118123209405638736}
   - component: {fileID: 2765945324055885492}
   - component: {fileID: -8981948647684070184}
   - component: {fileID: -2745226543789620693}
   - component: {fileID: -7913592335556277155}
+  - component: {fileID: 2171346730971602776}
   m_Layer: 8
   m_Name: Tower 6
   m_TagString: Untagged
@@ -94,29 +94,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7118123209405638736
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3418100763518854904}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.35
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2765945324055885492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestTower
   health: 50
+  assignedSlot: {fileID: 0}
 --- !u!114 &-8981948647684070184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +181,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PackageInstance
   conveyor: {fileID: 0}
+--- !u!65 &2171346730971602776
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3418100763518854904}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

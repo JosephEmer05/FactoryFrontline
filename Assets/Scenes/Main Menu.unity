@@ -3309,7 +3309,6 @@ MonoBehaviour:
   settingsCanvas: {fileID: 781848413}
   mainMenuCanvas: {fileID: 1043083712}
   tutorialCanvas: {fileID: 1648986479}
-  playCanvas: {fileID: 1201278856}
   towerPartsCanvas: {fileID: 1742001024}
   settingsButton: {fileID: 1080278778}
   quitButton: {fileID: 1744242863}
@@ -4894,7 +4893,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1515632596}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1187453142}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: MoveToScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1515632596
 MonoBehaviour:
   m_ObjectHideFlags: 0

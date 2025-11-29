@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject settingsCanvas;
     [SerializeField] private GameObject mainMenuCanvas;
     [SerializeField] private GameObject tutorialCanvas;
-    [SerializeField] private GameObject playCanvas;
+    //[SerializeField] private GameObject playCanvas;
     [SerializeField] private GameObject towerPartsCanvas;
 
     [Header("Buttons")]
@@ -38,7 +38,7 @@ public class MenuManager : MonoBehaviour
     {
         settingsCanvas.SetActive(false);
         tutorialCanvas.SetActive(false);
-        playCanvas.SetActive(false);
+      //  playCanvas.SetActive(false);
         towerPartsCanvas.SetActive(false);
 
         settingsButton.onClick.AddListener(ToggleSettings);
@@ -50,7 +50,7 @@ public class MenuManager : MonoBehaviour
         }
 
         tutorialButton.onClick.AddListener(OpenTutorial);
-        playButton.onClick.AddListener(OpenPlay);
+       // playButton.onClick.AddListener(OpenPlay);
         towerPartsButton.onClick.AddListener(OpenTowerParts);
     }
 
@@ -83,12 +83,12 @@ public class MenuManager : MonoBehaviour
         tutorialCanvas.SetActive(true);
     }
 
-    public void OpenPlay()
+    /*public void OpenPlay()
     {
         PlayClickSound();
         HideAllCanvases();
         playCanvas.SetActive(true);
-    }
+    }*/
 
     public void OpenTowerParts()
     {
@@ -102,7 +102,7 @@ public class MenuManager : MonoBehaviour
         mainMenuCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
         tutorialCanvas.SetActive(false);
-        playCanvas.SetActive(false);
+       // playCanvas.SetActive(false);
         towerPartsCanvas.SetActive(false);
     }
 

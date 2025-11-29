@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 8062188268556673440}
   - component: {fileID: 4512281750917744530}
   - component: {fileID: 5729602315553301398}
-  - component: {fileID: 5357919680370604993}
   - component: {fileID: -4003830731583608157}
+  - component: {fileID: 7925619326771192910}
   m_Layer: 8
   m_Name: Tower 1
   m_TagString: Untagged
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestTower
   health: 50
+  assignedSlot: {fileID: 0}
 --- !u!114 &4512281750917744530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,8 +168,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfcf1bb83504b640944e853cabec2bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerClickable
---- !u!136 &5357919680370604993
-CapsuleCollider:
+--- !u!114 &-4003830731583608157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945604183384091598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915306bdeb581444cbedc041740b06b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PackageInstance
+  conveyor: {fileID: 0}
+--- !u!65 &7925619326771192910
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -185,21 +199,6 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.35
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-4003830731583608157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8945604183384091598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 915306bdeb581444cbedc041740b06b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PackageInstance
-  conveyor: {fileID: 0}
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
