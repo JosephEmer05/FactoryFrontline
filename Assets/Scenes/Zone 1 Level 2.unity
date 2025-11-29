@@ -6870,8 +6870,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7de7eacb1c8311418fcc55937ff7785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
-  menuSceneName: MainMenu
-  nextLevelSceneName: 
+  menuSceneName: Main Menu
+  nextLevelSceneName: Zone 1 Level 3
   enemySlider: {fileID: 1180760964}
   enemyCounterText: {fileID: 0}
   waveTimerText: {fileID: 1079115179}

@@ -36215,7 +36215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7de7eacb1c8311418fcc55937ff7785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
-  menuSceneName: MainMenu
+  menuSceneName: Main Menu
   nextLevelSceneName: 
   enemySlider: {fileID: 138411956}
   enemyCounterText: {fileID: 0}
