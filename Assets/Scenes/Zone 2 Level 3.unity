@@ -5684,7 +5684,6 @@ Transform:
   - {fileID: 1931023681}
   - {fileID: 1571317693}
   - {fileID: 574168396}
-  - {fileID: 1449985908}
   - {fileID: 2002903821}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24620,15 +24619,23 @@ MonoBehaviour:
   - waveName: Wave 1
     enemies:
     - enemyPrefab: {fileID: 2422304691255231725, guid: 18232ad540b8f344c9526e2639114445, type: 3}
-      count: 4
+      count: 6
       spawnDelay: 2
       specificSpawners:
       - {fileID: 220802775}
+      - {fileID: 2042755593}
     - enemyPrefab: {fileID: 7939684599789357088, guid: 6cf38aa2e8f9eff4dbbfd92c203a334b, type: 3}
-      count: 5
+      count: 7
       spawnDelay: 2
       specificSpawners:
       - {fileID: 2042755593}
+      - {fileID: 220802775}
+    - enemyPrefab: {fileID: 8904670934615964826, guid: 9baa22e23ee6b6c4b8f689ae11f3addc, type: 3}
+      count: 6
+      spawnDelay: 2
+      specificSpawners:
+      - {fileID: 2042755593}
+      - {fileID: 220802775}
     useLowSpawners: 0
     useHighSpawners: 0
     timeAfterWave: 20
@@ -24646,26 +24653,50 @@ MonoBehaviour:
       specificSpawners:
       - {fileID: 220802775}
       - {fileID: 2042755593}
-    useLowSpawners: 0
-    useHighSpawners: 0
-    timeAfterWave: 20
-  - waveName: Wave 3
-    enemies:
     - enemyPrefab: {fileID: 8904670934615964826, guid: 9baa22e23ee6b6c4b8f689ae11f3addc, type: 3}
-      count: 2
+      count: 7
       spawnDelay: 2
       specificSpawners:
       - {fileID: 220802775}
       - {fileID: 2042755593}
     - enemyPrefab: {fileID: 8238917583004056761, guid: b5965b4ec5993624b8dbe7dfdd507641, type: 3}
-      count: 2
+      count: 6
       spawnDelay: 2
       specificSpawners:
       - {fileID: 1720528364}
       - {fileID: 1375961837}
     useLowSpawners: 0
     useHighSpawners: 0
-    timeAfterWave: 20
+    timeAfterWave: 30
+  - waveName: Wave 3
+    enemies:
+    - enemyPrefab: {fileID: 8904670934615964826, guid: 9baa22e23ee6b6c4b8f689ae11f3addc, type: 3}
+      count: 7
+      spawnDelay: 2
+      specificSpawners:
+      - {fileID: 220802775}
+      - {fileID: 2042755593}
+    - enemyPrefab: {fileID: 2422304691255231725, guid: 18232ad540b8f344c9526e2639114445, type: 3}
+      count: 10
+      spawnDelay: 2
+      specificSpawners:
+      - {fileID: 220802775}
+      - {fileID: 2042755593}
+    - enemyPrefab: {fileID: 7939684599789357088, guid: 6cf38aa2e8f9eff4dbbfd92c203a334b, type: 3}
+      count: 8
+      spawnDelay: 2
+      specificSpawners:
+      - {fileID: 220802775}
+      - {fileID: 2042755593}
+    - enemyPrefab: {fileID: 8238917583004056761, guid: b5965b4ec5993624b8dbe7dfdd507641, type: 3}
+      count: 8
+      spawnDelay: 2
+      specificSpawners:
+      - {fileID: 1720528364}
+      - {fileID: 1375961837}
+    useLowSpawners: 0
+    useHighSpawners: 0
+    timeAfterWave: 40
 --- !u!4 &1371043432
 Transform:
   m_ObjectHideFlags: 0
@@ -26429,7 +26460,7 @@ Transform:
   m_GameObject: {fileID: 1449985907}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.9244394, y: 0.52, z: -11.973901}
+  m_LocalPosition: {x: 10.636, y: 0.21999997, z: 11.158999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26477,7 +26508,7 @@ Transform:
   - {fileID: 1845780557}
   - {fileID: 1525839157}
   - {fileID: 766242672}
-  m_Father: {fileID: 331432161}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1451504199
 PrefabInstance:
@@ -39178,11 +39209,12 @@ SceneRoots:
   - {fileID: 929319777}
   - {fileID: 203844589}
   - {fileID: 220802776}
-  - {fileID: 1720528365}
   - {fileID: 2042755594}
+  - {fileID: 1720528365}
   - {fileID: 1375961838}
   - {fileID: 84552644}
   - {fileID: 331432161}
+  - {fileID: 1449985908}
   - {fileID: 1748790488}
   - {fileID: 1716119284}
   - {fileID: 1538188492}

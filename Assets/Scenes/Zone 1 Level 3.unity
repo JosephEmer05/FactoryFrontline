@@ -35486,26 +35486,38 @@ MonoBehaviour:
       specificSpawners:
       - {fileID: 220802775}
       - {fileID: 2042755593}
+    - enemyPrefab: {fileID: 8904670934615964826, guid: 9baa22e23ee6b6c4b8f689ae11f3addc, type: 3}
+      count: 5
+      spawnDelay: 2
+      specificSpawners:
+      - {fileID: 220802775}
+      - {fileID: 2042755593}
     useLowSpawners: 0
     useHighSpawners: 0
-    timeAfterWave: 20
+    timeAfterWave: 30
   - waveName: Wave 3
     enemies:
     - enemyPrefab: {fileID: 8904670934615964826, guid: 9baa22e23ee6b6c4b8f689ae11f3addc, type: 3}
-      count: 2
+      count: 5
+      spawnDelay: 2
+      specificSpawners:
+      - {fileID: 220802775}
+      - {fileID: 2042755593}
+    - enemyPrefab: {fileID: 2422304691255231725, guid: 18232ad540b8f344c9526e2639114445, type: 3}
+      count: 5
       spawnDelay: 2
       specificSpawners:
       - {fileID: 220802775}
       - {fileID: 2042755593}
     - enemyPrefab: {fileID: 8238917583004056761, guid: b5965b4ec5993624b8dbe7dfdd507641, type: 3}
-      count: 2
+      count: 6
       spawnDelay: 2
       specificSpawners:
       - {fileID: 1720528364}
       - {fileID: 1375961837}
     useLowSpawners: 0
     useHighSpawners: 0
-    timeAfterWave: 20
+    timeAfterWave: 40
 --- !u!4 &1371043432
 Transform:
   m_ObjectHideFlags: 0
@@ -49380,8 +49392,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 08fc30dc7e8e86f4ca1e91bd74356664, type: 2}
-  m_sharedMaterial: {fileID: 1386447708855151965, guid: 08fc30dc7e8e86f4ca1e91bd74356664, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
