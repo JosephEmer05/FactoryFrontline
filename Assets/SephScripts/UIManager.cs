@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     [Header("Scene Settings")]
-    public string menuSceneName = "MainMenu";
+    public string menuSceneName = "";
     public string nextLevelSceneName = "";
 
     [Header("Enemy Counter UI")]

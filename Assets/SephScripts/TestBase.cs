@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TestBase : MonoBehaviour
 {
-    public float basehealth = 200f;
+    public float basehealth = 10f;
 
     public void TakeDamage(float damage)
     {
