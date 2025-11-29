@@ -165,9 +165,10 @@ public abstract class BaseEnemy : MonoBehaviour
     public virtual void Die()
     {
         // Inform WaveManager
+
+        Destroy(gameObject);
         if (WaveManager.Instance != null)
             WaveManager.Instance.OnEnemyDied();
-        Destroy(gameObject);
     }
 
 

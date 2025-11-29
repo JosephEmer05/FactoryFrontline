@@ -122,7 +122,6 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        // Fallback: load next scene by build index
         int next = SceneManager.GetActiveScene().buildIndex + 1;
 
         if (next < SceneManager.sceneCountInBuildSettings)
