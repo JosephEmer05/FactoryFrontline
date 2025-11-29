@@ -15,7 +15,9 @@ public class TowerSelectionManager : MonoBehaviour
 
     public void RegisterSlot(TowerSlot slot)
     {
-        allSlots.Add(slot);
+        if (!allSlots.Contains(slot))
+            allSlots.Add(slot);
+
         slot.HideSlot();
     }
 
@@ -40,31 +42,40 @@ public class TowerSelectionManager : MonoBehaviour
     public void TryPlaceTower(TowerSlot slot)
     {
         if (selectedTower == null) return;
+        if (slot == null) return;
+        if (slot.isOccupied) return;
 
-        if (!slot.isOccupied)
+        PackageInstance pkg = selectedTower.GetComponent<PackageInstance>();
+        if (pkg == null)
         {
-            PackageInstance pkg = selectedTower.GetComponent<PackageInstance>();
-
-            Vector3 slotPos = slot.transform.position;
-            selectedTower.transform.position = new Vector3(
-                slotPos.x,
-                slot.placementHeight,
-                slotPos.z
-            );
-
-            pkg.conveyor.RemovePackage(pkg);
-
-            slot.isOccupied = true;
-            slot.UpdateColor();
-
-            DeselectTower();
+            Debug.LogWarning("Selected object has no PackageInstance - cannot place.");
+            return;
         }
+
+        Vector3 slotPos = slot.transform.position;
+        selectedTower.transform.position = new Vector3(
+            slotPos.x,
+            slot.placementHeight,
+            slotPos.z
+        );
+
+        pkg.conveyor.RemovePackage(pkg);
+
+        slot.AssignTower(selectedTower);
+
+        TestTower towerComp = selectedTower.GetComponent<TestTower>();
+        if (towerComp != null)
+        {
+            towerComp.assignedSlot = slot;
+        }
+        DeselectTower();
     }
 
     private void ShowSlots()
     {
         foreach (var slot in allSlots)
-            slot.ShowSlot();
+            if (!slot.isOccupied)
+                slot.ShowSlot();
     }
 
     private void HideSlots()

@@ -7,6 +7,8 @@ public class TestTower : MonoBehaviour
     [Header("Tower Health")]
     public float health = 100f;
 
+    public TowerSlot assignedSlot;
+
     void Awake()
     {
         turret = GetComponent<Alltowerscript>();
@@ -27,6 +29,8 @@ public class TestTower : MonoBehaviour
 
         if (health <= 0)
         {
+            if (assignedSlot != null)
+                assignedSlot.ClearSlot();
             Destroy(gameObject);
         }
     }
