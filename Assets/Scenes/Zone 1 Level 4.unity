@@ -16927,7 +16927,6 @@ MonoBehaviour:
   winMenuButton: {fileID: 1647400791}
   loseRetryButton: {fileID: 499533114}
   loseMenuButton: {fileID: 1762205152}
-  winCountdownSeconds: 6
 --- !u!4 &733047927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 16b82a8d4596b2745a9453705acfd9dd, type: 3}

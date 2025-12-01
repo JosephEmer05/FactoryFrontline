@@ -4,10 +4,17 @@ public class TestBase : MonoBehaviour
 {
     public float basehealth = 10f;
 
+    void Start()
+    {
+        UIManager.Instance.SetBaseHealth(basehealth);
+    }
+
     public void TakeDamage(float damage)
     {
         basehealth -= damage;
-        Debug.Log("Base took damage! Current HP: " + basehealth);
+
+        UIManager.Instance.UpdateBaseHealth(basehealth);
+
         if (basehealth <= 0)
         {
             GameOver();
@@ -17,6 +24,5 @@ public class TestBase : MonoBehaviour
     void GameOver()
     {
         UIManager.Instance.ShowGameOverScreen();
-        Debug.Log("Base Destroyed! Game Over!");
     }
 }

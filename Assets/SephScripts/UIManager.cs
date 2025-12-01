@@ -2,33 +2,34 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    [Header("Scene Settings")]
     public string menuSceneName = "";
     public string nextLevelSceneName = "";
 
-    [Header("Enemy Counter UI")]
     public Slider enemySlider;
     public TMP_Text enemyCounterText;
 
-    [Header("Wave Timer UI")]
+    public TMP_Text baseHealthText;
+
     public TMP_Text waveTimerText;
 
-    [Header("Screens")]
     public GameObject winScreen;
     public GameObject gameOverScreen;
 
-    [Header("Buttons")]
     public Button winNextLevelButton;
     public Button winRestartButton;
     public Button winMenuButton;
 
     public Button loseRetryButton;
     public Button loseMenuButton;
+
+    public float winCountdownSeconds = 3f;
+    private Coroutine winCoroutine;
 
     void Awake()
     {
@@ -54,6 +55,18 @@ public class UIManager : MonoBehaviour
             loseMenuButton.onClick.AddListener(() => LoadMenu());
     }
 
+    public void SetBaseHealth(float maxHP)
+    {
+        if (baseHealthText != null)
+            baseHealthText.text = maxHP.ToString();
+    }
+
+    public void UpdateBaseHealth(float hp)
+    {
+        if (baseHealthText != null)
+            baseHealthText.text = hp.ToString();
+    }
+
     public void SetEnemySlider(int total, int remaining)
     {
         enemySlider.minValue = 0;
@@ -61,7 +74,7 @@ public class UIManager : MonoBehaviour
         enemySlider.value = remaining;
 
         if (enemyCounterText != null)
-            enemyCounterText.text = $"{remaining}/{total}";
+            enemyCounterText.text = remaining + "/" + total;
     }
 
     public void UpdateEnemySlider(int remaining)
@@ -69,10 +82,29 @@ public class UIManager : MonoBehaviour
         enemySlider.value = remaining;
 
         if (enemyCounterText != null)
-            enemyCounterText.text = $"{remaining}/{(int)enemySlider.maxValue}";
+            enemyCounterText.text = remaining + "/" + (int)enemySlider.maxValue;
+
+        if (enemySlider.value <= 0 && winCoroutine == null)
+            winCoroutine = StartCoroutine(WinCountdownAndShow());
+    }
+
+    IEnumerator WinCountdownAndShow()
+    {
+        float t = winCountdownSeconds;
+
+        while (t > 0f)
+        {
+            yield return new WaitForSecondsRealtime(0.1f);
+            t -= 0.1f;
+        }
 
         if (enemySlider.value <= 0)
-            ShowWinScreen();
+        {
+            Time.timeScale = 0f;
+            winScreen.SetActive(true);
+        }
+
+        winCoroutine = null;
     }
 
     public void UpdateWaveTimer(float time)
@@ -81,14 +113,14 @@ public class UIManager : MonoBehaviour
             waveTimerText.text = Mathf.CeilToInt(time).ToString();
     }
 
-    public void ShowWinScreen()
-    {
-        Time.timeScale = 0f;
-        winScreen.SetActive(true);
-    }
-
     public void ShowGameOverScreen()
     {
+        if (winCoroutine != null)
+        {
+            StopCoroutine(winCoroutine);
+            winCoroutine = null;
+        }
+
         Time.timeScale = 0f;
         gameOverScreen.SetActive(true);
     }
@@ -104,10 +136,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
 
         if (string.IsNullOrEmpty(menuSceneName))
-        {
-            Debug.LogError("UIManager Error: Menu scene name is empty.");
             return;
-        }
 
         SceneManager.LoadScene(menuSceneName);
     }
@@ -125,12 +154,6 @@ public class UIManager : MonoBehaviour
         int next = SceneManager.GetActiveScene().buildIndex + 1;
 
         if (next < SceneManager.sceneCountInBuildSettings)
-        {
             SceneManager.LoadScene(next);
-        }
-        else
-        {
-            Debug.Log("No more levels are listed in Build Settings.");
-        }
     }
 }
