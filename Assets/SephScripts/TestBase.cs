@@ -12,7 +12,6 @@ public class TestBase : MonoBehaviour
     public void TakeDamage(float damage)
     {
         basehealth -= damage;
-
         UIManager.Instance.UpdateBaseHealth(basehealth);
 
         if (basehealth <= 0)

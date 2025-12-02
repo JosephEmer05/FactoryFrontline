@@ -25,19 +25,18 @@ public class WaveManager : MonoBehaviour
 {
     public static WaveManager Instance;
 
-    [Header("Spawner References")]
     public EnemySpawner[] lowSpawners;
     public EnemySpawner[] highSpawners;
 
-    [Header("Waves Configuration")]
     public Wave[] waves;
 
     private int currentWave = -1;
 
     private int totalEnemiesAllWaves = 0;
     private int enemiesRemaining = 0;
+    private int enemiesRemainingAtWaveStart = 0;
 
-    private void Awake()
+    void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
@@ -50,8 +49,6 @@ public class WaveManager : MonoBehaviour
 
         if (UIManager.Instance != null)
             UIManager.Instance.SetEnemySlider(totalEnemiesAllWaves, enemiesRemaining);
-        else
-            Debug.LogWarning("WaveManager.Start: UIManager.Instance is null.");
 
         StartCoroutine(WaveRoutine());
     }
@@ -64,6 +61,7 @@ public class WaveManager : MonoBehaviour
             foreach (var entry in wave.enemies)
             {
                 int spawnerCount = 0;
+
                 if (entry.specificSpawners != null && entry.specificSpawners.Length > 0)
                     spawnerCount = entry.specificSpawners.Length;
                 else
@@ -75,17 +73,12 @@ public class WaveManager : MonoBehaviour
                 total += entry.count * Mathf.Max(1, spawnerCount);
             }
         }
-        Debug.Log($"WaveManager: totalEnemiesAllWaves = {total}");
         return total;
     }
 
     public void OnEnemyDied()
     {
         enemiesRemaining = Mathf.Max(0, enemiesRemaining - 1);
-        if (UIManager.Instance != null)
-            UIManager.Instance.UpdateEnemySlider(enemiesRemaining);
-
-        Debug.Log($"WaveManager: OnEnemyDied -> enemiesRemaining = {enemiesRemaining}");
 
         if (UIManager.Instance != null)
             UIManager.Instance.UpdateEnemySlider(enemiesRemaining);
@@ -93,7 +86,7 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator WaveRoutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         for (int i = 0; i < waves.Length; i++)
         {
@@ -101,21 +94,47 @@ public class WaveManager : MonoBehaviour
             Wave wave = waves[i];
 
             float timer = wave.timeAfterWave;
-            while (timer > 0f)
+
+            if (i == 0)
             {
+                while (timer > 0f)
+                {
+                    if (UIManager.Instance != null)
+                        UIManager.Instance.UpdateWaveTimer(timer);
+
+                    yield return null;
+                    timer -= Time.deltaTime;
+                }
+
                 if (UIManager.Instance != null)
-                    UIManager.Instance.UpdateWaveTimer(timer);
-                yield return null;
-                timer -= Time.deltaTime;
+                    UIManager.Instance.UpdateWaveTimer(0);
             }
-            if (UIManager.Instance != null)
-                UIManager.Instance.UpdateWaveTimer(0);
+            else
+            {
+                while (enemiesRemaining > enemiesRemainingAtWaveStart)
+                    yield return null;
+
+                while (timer > 0f)
+                {
+                    if (UIManager.Instance != null)
+                        UIManager.Instance.UpdateWaveTimer(timer);
+
+                    yield return null;
+                    timer -= Time.deltaTime;
+                }
+
+                if (UIManager.Instance != null)
+                    UIManager.Instance.UpdateWaveTimer(0);
+            }
+
+            enemiesRemainingAtWaveStart = enemiesRemaining;
 
             foreach (var entry in wave.enemies)
             {
                 for (int c = 0; c < entry.count; c++)
                 {
                     EnemySpawner[] chosen = null;
+
                     if (entry.specificSpawners != null && entry.specificSpawners.Length > 0)
                         chosen = entry.specificSpawners;
                     else
@@ -124,8 +143,9 @@ public class WaveManager : MonoBehaviour
                     foreach (var sp in chosen)
                     {
                         if (sp == null) continue;
-                        GameObject spawned = sp.SpawnEnemy(entry.enemyPrefab);
+                        sp.SpawnEnemy(entry.enemyPrefab);
                     }
+
                     yield return new WaitForSeconds(entry.spawnDelay);
                 }
             }
