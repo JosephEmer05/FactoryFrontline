@@ -13,6 +13,7 @@ public class TowerCraftingManager : MonoBehaviour
     [SerializeField] private UICraftingSlot baseSlotUI;
 
     [Header("Output Config")]
+    [SerializeField] private PanelController panelController;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform packageHolder;
     [SerializeField] private PackageConveyorManager packageConveyor;
@@ -76,6 +77,10 @@ public class TowerCraftingManager : MonoBehaviour
 
             // !! Debug
             Debug.Log("Successfully crafted: " + packagePrefab);
+            if (!panelController.isPinned)
+            {
+                panelController.TogglePanel();
+            }
         }
 
         baseSlotUI.ClearSlot();

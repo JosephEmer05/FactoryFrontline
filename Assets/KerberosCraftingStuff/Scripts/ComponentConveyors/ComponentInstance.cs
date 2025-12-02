@@ -70,7 +70,7 @@ public class ComponentInstance : MonoBehaviour
             // Check for closest 3D slot
             UICraftingSlot slot = FindClosestSlot();
 
-            if (slot != null)
+            if (slot != null && !slot.hasPart)
             {
                 PlaceIntoSlot(slot);
             }
