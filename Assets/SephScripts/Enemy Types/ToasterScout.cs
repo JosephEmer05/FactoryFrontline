@@ -10,6 +10,9 @@ public class ToasterScout : BaseEnemy
     public float fireCooldown = 2f;
     public float engageRangeMultiplier = 1.5f;
 
+    // Tiny radius used only for base detection so they look like they crash into the base
+    private const float BaseContactRadius = 0.2f;
+
     private float cooldownTimer = 0f;
 
     protected override void Update()
@@ -20,12 +23,14 @@ public class ToasterScout : BaseEnemy
 
         if (!isAttacking)
         {
-            // Prioritize base
-            Transform baseInRange = DetectBaseInRange();
-            if (baseInRange != null)
+            // Prioritize base: require near-contact distance so it looks like a crash
+            Transform baseNearContact = DetectBaseNearContact();
+            if (baseNearContact != null)
             {
-                targetBase = baseInRange;
-                StartCoroutine(FireAtBase(baseInRange));
+                targetBase = baseNearContact;
+                // Single-hit damage and destroy
+                DealDamage(targetBase, 1f);
+                Die();
                 return;
             }
 
@@ -43,12 +48,13 @@ public class ToasterScout : BaseEnemy
 
         while (target != null && Vector3.Distance(transform.position, target.position) <= atkRange * engageRangeMultiplier)
         {
-            // Switch if base appears
-            Transform baseInRange = DetectBaseInRange();
-            if (baseInRange != null)
+            // Switch if base appears: only when near contact
+            Transform baseNearContact = DetectBaseNearContact();
+            if (baseNearContact != null)
             {
-                targetBase = baseInRange;
-                StartCoroutine(FireAtBase(baseInRange));
+                targetBase = baseNearContact;
+                DealDamage(targetBase, 1f);
+                Die();
                 break;
             }
 
@@ -67,22 +73,17 @@ public class ToasterScout : BaseEnemy
         yield return null;
     }
 
-    IEnumerator FireAtBase(Transform baseTarget)
+    // Restrict base detection to a tiny radius around the enemy
+    private Transform DetectBaseNearContact()
     {
-        isAttacking = true;
-        while (baseTarget != null && Vector3.Distance(transform.position, baseTarget.position) <= atkRange * engageRangeMultiplier)
+        // Use physics overlap with baseLayer and a very small radius
+        Collider[] hits = Physics.OverlapSphere(transform.position, BaseContactRadius, baseLayer);
+        for (int i = 0; i < hits.Length; i++)
         {
-            FaceTarget(baseTarget.position);
-
-            if (cooldownTimer <= 0f)
-            {
-                FireProjectileAtBase(baseTarget);
-                cooldownTimer = fireCooldown;
-            }
-
-            yield return null;
+            // Return the first valid base transform
+            return hits[i].transform;
         }
-        isAttacking = false;
+        return null;
     }
 
     void FireProjectileAtTower(Transform target)
@@ -93,16 +94,6 @@ public class ToasterScout : BaseEnemy
         Vector3 direction = (target.position - firePoint.position).normalized;
         projectile.transform.rotation = Quaternion.LookRotation(direction);
         StartCoroutine(MoveProjectileTower(projectile, direction, target));
-    }
-
-    void FireProjectileAtBase(Transform baseTarget)
-    {
-        if (projectilePrefab == null || firePoint == null) return;
-
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-        Vector3 direction = (baseTarget.position - firePoint.position).normalized;
-        projectile.transform.rotation = Quaternion.LookRotation(direction);
-        StartCoroutine(MoveProjectileBase(projectile, direction, baseTarget));
     }
 
     IEnumerator MoveProjectileTower(GameObject projectile, Vector3 direction, Transform target)
@@ -141,42 +132,6 @@ public class ToasterScout : BaseEnemy
             Destroy(projectile);
     }
 
-    IEnumerator MoveProjectileBase(GameObject projectile, Vector3 direction, Transform baseTarget)
-    {
-        float lifetime = 5f;
-        float elapsed = 0f;
-
-        while (projectile != null && elapsed < lifetime)
-        {
-            if (projectile == null) yield break;
-            if (baseTarget == null)
-            {
-                Destroy(projectile);
-                yield break;
-            }
-
-            projectile.transform.Translate(direction * projectileSpeed * Time.deltaTime, Space.World);
-            elapsed += Time.deltaTime;
-
-            if (baseTarget != null && Vector3.Distance(projectile.transform.position, baseTarget.position) <= 0.5f)
-            {
-                TestBase baseComp = baseTarget.GetComponent<TestBase>();
-                if (baseComp != null)
-                {
-                    baseComp.TakeDamage(atkDmg);
-                }
-
-                Destroy(projectile);
-                yield break;
-            }
-
-            yield return null;
-        }
-
-        if (projectile != null)
-            Destroy(projectile);
-    }
-
     void FaceTarget(Vector3 targetPos)
     {
         Vector3 direction = (targetPos - transform.position);
@@ -188,4 +143,9 @@ public class ToasterScout : BaseEnemy
         }
     }
 
+    // Keep ReachBase empty; near-contact logic handles damage and destruction.
+    protected override void ReachBase()
+    {
+        // Intentionally empty.
+    }
 }
