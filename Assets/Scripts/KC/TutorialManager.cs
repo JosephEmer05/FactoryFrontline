@@ -31,8 +31,17 @@ public class TutorialManager : MonoBehaviour
 
         if (previousButton != null)
             previousButton.onClick.AddListener(PreviousPage);
+    }
 
-        ShowPage(0);
+    private void OnEnable()
+    {
+        ShowPage(currentPage);
+    }
+
+    public void ResetTutorial()
+    {
+        currentPage = 0;
+        ShowPage(currentPage);
     }
 
     private void ShowPage(int index)
