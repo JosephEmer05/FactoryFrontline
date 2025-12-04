@@ -948,8 +948,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1 &32990781
 GameObject:
   m_ObjectHideFlags: 0
@@ -2753,8 +2755,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &97803568 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 33910cdcdf9d56642a42ced59a3550c6, type: 3}
@@ -3891,8 +3895,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &160986075 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a3de8236f5b0aa0458862cfa8f756fdd, type: 3}
@@ -5463,8 +5469,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efe0f416473f41479ca52e520b71e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  lowEnemyPrefab: {fileID: 0}
+  highEnemyPrefab: {fileID: 0}
   pathIndex: 0
   isHighSpawner: 0
+  spawnInterval: 2
 --- !u!4 &220802776
 Transform:
   m_ObjectHideFlags: 0
@@ -5942,8 +5951,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1001 &232302422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7472,8 +7483,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1001 &321311763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8355,8 +8368,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1 &355395188
 GameObject:
   m_ObjectHideFlags: 0
@@ -8789,8 +8804,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1001 &368832721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9477,8 +9494,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &426981379 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1aa88f70d7c2f546b9fa0c74a6d62e4, type: 3}
@@ -10889,8 +10908,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1001 &488347467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13163,8 +13184,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &616548838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c6636fd11bd01047bb08ae5ddf55c84, type: 3}
@@ -14676,8 +14699,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &689724095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1d55a76754e9ba0499bc7a3d7c9d327a, type: 3}
@@ -15488,8 +15513,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1 &745355228
 GameObject:
   m_ObjectHideFlags: 0
@@ -15914,8 +15941,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1001 &775162822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16367,8 +16396,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1001 &796793902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16978,8 +17009,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &816733165 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0fe29b46815d4e14e803dc9bfb497bea, type: 3}
@@ -24275,8 +24308,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1 &1175752103
 GameObject:
   m_ObjectHideFlags: 0
@@ -24467,8 +24502,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1001 &1177346981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26747,8 +26784,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &1298790164 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0fe29b46815d4e14e803dc9bfb497bea, type: 3}
@@ -28114,8 +28153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &1355708437 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4cf1a729556d6454782584b83b6183c6, type: 3}
@@ -28618,9 +28659,11 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 2422304691255231725, guid: 18232ad540b8f344c9526e2639114445, type: 3}
       count: 2
       spawnDelay: 2
+      specificSpawners: []
     - enemyPrefab: {fileID: 7939684599789357088, guid: 6cf38aa2e8f9eff4dbbfd92c203a334b, type: 3}
       count: 2
       spawnDelay: 2
+      specificSpawners: []
     useLowSpawners: 1
     useHighSpawners: 0
     timeAfterWave: 10
@@ -28629,9 +28672,11 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 2422304691255231725, guid: 18232ad540b8f344c9526e2639114445, type: 3}
       count: 3
       spawnDelay: 2
+      specificSpawners: []
     - enemyPrefab: {fileID: 7939684599789357088, guid: 6cf38aa2e8f9eff4dbbfd92c203a334b, type: 3}
       count: 3
       spawnDelay: 2
+      specificSpawners: []
     useLowSpawners: 1
     useHighSpawners: 0
     timeAfterWave: 10
@@ -28640,9 +28685,11 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 8904670934615964826, guid: 9baa22e23ee6b6c4b8f689ae11f3addc, type: 3}
       count: 2
       spawnDelay: 2
+      specificSpawners: []
     - enemyPrefab: {fileID: 8238917583004056761, guid: b5965b4ec5993624b8dbe7dfdd507641, type: 3}
       count: 2
       spawnDelay: 2
+      specificSpawners: []
     useLowSpawners: 1
     useHighSpawners: 1
     timeAfterWave: 10
@@ -28705,8 +28752,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efe0f416473f41479ca52e520b71e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  lowEnemyPrefab: {fileID: 0}
+  highEnemyPrefab: {fileID: 0}
   pathIndex: 1
   isHighSpawner: 1
+  spawnInterval: 2
 --- !u!4 &1375961838
 Transform:
   m_ObjectHideFlags: 0
@@ -29745,7 +29795,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5264d2ad16063c0439b3bcbbf14768bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSelectionManager
-  towerPlacementY: 1.28
 --- !u!4 &1426333933
 Transform:
   m_ObjectHideFlags: 0
@@ -30465,8 +30514,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &1453548179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 33910cdcdf9d56642a42ced59a3550c6, type: 3}
@@ -31107,8 +31158,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &1490300523 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f0b19264790dc7847bda260257f05034, type: 3}
@@ -31733,8 +31786,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &1520275341 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f0b19264790dc7847bda260257f05034, type: 3}
@@ -33457,7 +33512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53b0dc18f58a5e418c73317013fc659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestBase
-  health: 200
+  basehealth: 10
 --- !u!4 &1602461004 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f0b19264790dc7847bda260257f05034, type: 3}
@@ -33625,8 +33680,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1001 &1609287905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34305,299 +34362,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76c950406148474458c39856514e7e84, type: 3}
---- !u!1001 &1667266239
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 110138274655419443, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 110138274655419443, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 206889361669811971, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_Name
-      value: Pause Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 206889361669811971, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 782147516009125628, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 782147516009125628, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 818134212501049906, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.49995
-      objectReference: {fileID: 0}
-    - target: {fileID: 818134212501049906, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 818134212501049906, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.49995
-      objectReference: {fileID: 0}
-    - target: {fileID: 1295896909552718818, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.49995
-      objectReference: {fileID: 0}
-    - target: {fileID: 1295896909552718818, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251106875372978418, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3508299322362539493, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3508299322362539493, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3508299322362539493, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3508299322362539493, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -170
-      objectReference: {fileID: 0}
-    - target: {fileID: 3697305073597680603, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3697305073597680603, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3697305073597680603, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4844426393727924779, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4844426393727924779, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4844426393727924779, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4844426393727924779, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 67.99999
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084894185317682283, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084894185317682283, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084894185317682283, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084894185317682283, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 19.999992
-      objectReference: {fileID: 0}
-    - target: {fileID: 5204570036793890239, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5204570036793890239, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5204570036793890239, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5204570036793890239, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -103
-      objectReference: {fileID: 0}
-    - target: {fileID: 5328868358405761116, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 961739752}
-    - target: {fileID: 5328868358405761116, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5328868358405761116, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6919607027932934147, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6919607027932934147, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6919607027932934147, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6919607027932934147, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6919607027932934147, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6919607027932934147, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6919607027932934147, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6919607027932934147, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6919607027932934147, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6919607027932934147, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7258180058918748908, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7258180058918748908, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7258180058918748908, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7258180058918748908, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 104
-      objectReference: {fileID: 0}
-    - target: {fileID: 7279967084221983678, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7279967084221983678, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7279967084221983678, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7279967084221983678, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 179
-      objectReference: {fileID: 0}
-    - target: {fileID: 8335953136266424236, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_Color.a
-      value: 0.84705883
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817312895073487623, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817312895073487623, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817312895073487623, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817312895073487623, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -13.000019
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 35cff30cbaa4ac24c99cede0fb5203f9, type: 3}
 --- !u!1001 &1668992622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35161,8 +34925,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1001 &1687043602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35753,8 +35519,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1001 &1713729114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36074,8 +35842,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efe0f416473f41479ca52e520b71e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  lowEnemyPrefab: {fileID: 0}
+  highEnemyPrefab: {fileID: 0}
   pathIndex: 0
   isHighSpawner: 1
+  spawnInterval: 2
 --- !u!4 &1720528365
 Transform:
   m_ObjectHideFlags: 0
@@ -36707,8 +36478,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &1754542904 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 16b82a8d4596b2745a9453705acfd9dd, type: 3}
@@ -36861,8 +36634,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1001 &1769546941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38015,8 +37790,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &1847852480 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4cf1a729556d6454782584b83b6183c6, type: 3}
@@ -41277,8 +41054,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1001 &2004941516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42164,8 +41943,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efe0f416473f41479ca52e520b71e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  lowEnemyPrefab: {fileID: 0}
+  highEnemyPrefab: {fileID: 0}
   pathIndex: 1
   isHighSpawner: 0
+  spawnInterval: 2
 --- !u!4 &2042755594
 Transform:
   m_ObjectHideFlags: 0
@@ -42718,8 +42500,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!1001 &2057235977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42983,8 +42767,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSlot
   isOccupied: 0
+  placementHeight: 0
   availableColor: {r: 0, g: 0, b: 1, a: 1}
   occupiedColor: {r: 1, g: 0, b: 0, a: 1}
+  currentTower: {fileID: 0}
 --- !u!4 &2066232110 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4cf1a729556d6454782584b83b6183c6, type: 3}
@@ -44040,7 +43826,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 961739753}
-  - {fileID: 1667266239}
   - {fileID: 433231836}
   - {fileID: 482504377}
   - {fileID: 929319777}
