@@ -9,6 +9,8 @@ public class UICraftingSlot : MonoBehaviour
     public ComponentData partData;
     public GameObject currentPart;
 
+    public bool hasPart;
+
     [HideInInspector] public TowerCraftingManager crafter;
 
     void OnEnable()   => CraftSlotManager.AddSlot(this);
@@ -20,6 +22,7 @@ public class UICraftingSlot : MonoBehaviour
     {
         partData = part;
         currentPart = partInstance;
+        hasPart = true;
 
         //iconImage.sprite = part.icon;
         //iconImage.color = Color.white;
@@ -32,6 +35,7 @@ public class UICraftingSlot : MonoBehaviour
         Destroy(currentPart);
         currentPart = null;
         partData = null;
+        hasPart = false;
         
         //iconImage.sprite = null;
         //iconImage.color = new Color(1,1,1,0);

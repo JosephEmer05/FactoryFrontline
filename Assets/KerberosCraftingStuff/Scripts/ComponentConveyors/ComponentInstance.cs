@@ -70,7 +70,7 @@ public class ComponentInstance : MonoBehaviour
             // Check for closest 3D slot
             UICraftingSlot slot = FindClosestSlot();
 
-            if (slot != null)
+            if (slot != null && !slot.hasPart)
             {
                 PlaceIntoSlot(slot);
             }
@@ -123,7 +123,7 @@ public class ComponentInstance : MonoBehaviour
         transform.position = slot.transform.position;
 
         slot.SetPart(componentData, this.gameObject);
-
+        
         Collider col = GetComponent<Collider>();
         if (col != null) col.enabled = false;
     }
