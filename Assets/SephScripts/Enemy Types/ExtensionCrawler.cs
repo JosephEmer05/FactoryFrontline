@@ -15,6 +15,7 @@ public class ExtensionCrawler : BaseEnemy
     {
         if (!isWrapping && !isAttacking)
         {
+            // Continue normal movement toward base
             base.Update();
             ScanForTargets();
         }
@@ -22,7 +23,7 @@ public class ExtensionCrawler : BaseEnemy
 
     void ScanForTargets()
     {
-        // Base priority
+        // Prefer base if in range
         Transform baseInRange = DetectBaseInRange();
         if (baseInRange != null)
         {
@@ -31,23 +32,26 @@ public class ExtensionCrawler : BaseEnemy
             return;
         }
 
-        Collider[] hits = Physics.OverlapSphere(transform.position, attachRange, towerLayer);
-        if (hits.Length > 0)
+        // Look for closest tower within attach range
+        Transform tower = FindClosestTower();
+        if (tower != null && Vector3.Distance(transform.position, tower.position) <= attachRange)
         {
-            Transform target = hits[0].transform;
-            StartCoroutine(WrapTower(target));
+            StartCoroutine(WrapTower(tower));
         }
     }
 
     IEnumerator WrapTower(Transform targetTower)
     {
+        if (targetTower == null) yield break;
         isWrapping = true;
+       // targetTower = targetTower; // local reference
 
+        // Compute latch point offset slightly toward crawler start position
         Vector3 latchPoint = targetTower.position + (transform.position - targetTower.position).normalized * 0.5f;
 
-        while (Vector3.Distance(transform.position, latchPoint) > 0.1f)
+        // Approach latch point unless a base becomes available
+        while (targetTower != null && Vector3.Distance(transform.position, latchPoint) > 0.1f)
         {
-            // Switch to base if appears
             Transform baseInRange = DetectBaseInRange();
             if (baseInRange != null)
             {
@@ -62,11 +66,11 @@ public class ExtensionCrawler : BaseEnemy
         }
 
         float timer = 0f;
-        TestTower tower = targetTower.GetComponent<TestTower>();
+        TestTower towerComponent = targetTower ? targetTower.GetComponent<TestTower>() : null;
 
-        while (tower != null && timer < latchDuration)
+        // Damage loop (wrap duration or tower death or base priority)
+        while (towerComponent != null && timer < latchDuration && towerComponent.health > 0f)
         {
-            // Poll base while latched
             Transform baseInRange = DetectBaseInRange();
             if (baseInRange != null)
             {
@@ -76,14 +80,14 @@ public class ExtensionCrawler : BaseEnemy
                 yield break;
             }
 
-            tower.TakeDamage(wrapDamage);
+            towerComponent.TakeDamage(wrapDamage);
             yield return new WaitForSeconds(damageInterval);
             timer += damageInterval;
-
-            if (tower.health <= 0) break;
         }
 
+        // If tower is destroyed, continue normal behavior then repeat
         isWrapping = false;
-        Die();
+        targetTower = null;
+        // Movement & scanning will resume in Update()
     }
 }
