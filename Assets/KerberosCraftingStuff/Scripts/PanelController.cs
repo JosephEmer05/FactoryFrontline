@@ -6,6 +6,9 @@ public class PanelController : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private RectTransform UICraftingPanel;
     [SerializeField] private Button UICraftingButton;
+    [Space]
+    [SerializeField] private Toggle UIPinToggle;
+    public bool isPinned;
 
     [Header("Animation Settings")]
     public float showPosX = 200f;
@@ -24,6 +27,11 @@ public class PanelController : MonoBehaviour
         {
             UICraftingButton.onClick.AddListener(TogglePanel);
         }
+
+        if (UIPinToggle != null)
+        {
+            UIPinToggle.onValueChanged.AddListener(TogglePin);
+        }
     }
 
     void Update()
@@ -35,5 +43,10 @@ public class PanelController : MonoBehaviour
     {
         isOpen = !isOpen;
         targetPos = new Vector2(isOpen ? showPosX : hidePosX, UICraftingPanel.anchoredPosition.y);
+    }
+
+    public void TogglePin(bool value)
+    {
+        isPinned = value;
     }
 }

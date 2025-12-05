@@ -12514,6 +12514,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a3de8236f5b0aa0458862cfa8f756fdd, type: 3}
   m_PrefabInstance: {fileID: 674437288}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &556852021 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4485517224428641434, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+  m_PrefabInstance: {fileID: 8071838623322062870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155692545d038ce47905555d4b2a0a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingPanelController
 --- !u!1 &556853610
 GameObject:
   m_ObjectHideFlags: 0
@@ -13135,6 +13146,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0b19264790dc7847bda260257f05034, type: 3}
+--- !u!114 &580439324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071838623322062871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2113dbdc0777544996ddcfbb40aeeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RemoveButton
+  slot: {fileID: 8071838623322062872}
 --- !u!1001 &582078573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16900,6 +16924,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0b19264790dc7847bda260257f05034, type: 3}
+--- !u!4 &804779065 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5142236962734576365, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+  m_PrefabInstance: {fileID: 8071838623322062870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &806010922
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36392,6 +36421,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f0b19264790dc7847bda260257f05034, type: 3}
   m_PrefabInstance: {fileID: 1709266421}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1683114220 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4922399610175250777, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+  m_PrefabInstance: {fileID: 8071838623322062870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1686789559 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f0b19264790dc7847bda260257f05034, type: 3}
@@ -41402,6 +41436,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 489850893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1944825526 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7320422526516734340, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+  m_PrefabInstance: {fileID: 8071838623322062870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc3e97af8e0d564c891b42457ea1e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PackageConveyorManager
 --- !u!4 &1950786817 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f0b19264790dc7847bda260257f05034, type: 3}
@@ -46293,20 +46338,107 @@ PrefabInstance:
     - target: {fileID: 9141687605713855683, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
       propertyPath: spawnPoint
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1683114220}
     - target: {fileID: 9141687605713855683, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
       propertyPath: packageHolder
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 804779065}
     - target: {fileID: 9141687605713855683, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
       propertyPath: packageConveyor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1944825526}
+    - target: {fileID: 9141687605713855683, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+      propertyPath: panelController
+      value: 
+      objectReference: {fileID: 556852021}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5708878188859804064, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8071838623322062878}
+    - targetCorrespondingSourceObject: {fileID: 6499018410833891865, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8071838623322062877}
+    - targetCorrespondingSourceObject: {fileID: 3681877499029349846, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 580439324}
   m_SourcePrefab: {fileID: 100100000, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+--- !u!1 &8071838623322062871 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3681877499029349846, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+  m_PrefabInstance: {fileID: 8071838623322062870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8071838623322062872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2546448379175322378, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+  m_PrefabInstance: {fileID: 8071838623322062870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5f8a260f8465404cbf701b04c7075db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICraftingSlot
+--- !u!1 &8071838623322062873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6499018410833891865, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+  m_PrefabInstance: {fileID: 8071838623322062870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8071838623322062874 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5054467777866957934, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+  m_PrefabInstance: {fileID: 8071838623322062870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5f8a260f8465404cbf701b04c7075db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICraftingSlot
+--- !u!1 &8071838623322062875 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5708878188859804064, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+  m_PrefabInstance: {fileID: 8071838623322062870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8071838623322062876 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7971412088661024346, guid: 6778ff5915aaafc47ac1d6c2311efa82, type: 3}
+  m_PrefabInstance: {fileID: 8071838623322062870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5f8a260f8465404cbf701b04c7075db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICraftingSlot
+--- !u!114 &8071838623322062877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071838623322062873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2113dbdc0777544996ddcfbb40aeeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RemoveButton
+  slot: {fileID: 8071838623322062874}
+--- !u!114 &8071838623322062878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071838623322062875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2113dbdc0777544996ddcfbb40aeeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RemoveButton
+  slot: {fileID: 8071838623322062876}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

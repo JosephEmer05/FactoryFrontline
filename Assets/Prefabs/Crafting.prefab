@@ -941,6 +941,7 @@ MonoBehaviour:
   weaponSlotUI: {fileID: 2546448379175322378}
   coreSlotUI: {fileID: 5054467777866957934}
   baseSlotUI: {fileID: 7971412088661024346}
+  panelController: {fileID: 4485517224428641434}
   spawnPoint: {fileID: 4922399610175250777}
   packageHolder: {fileID: 5142236962734576365}
   packageConveyor: {fileID: 7320422526516734340}
@@ -1233,6 +1234,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CraftingPanelController
   UICraftingPanel: {fileID: 538684444869180150}
   UICraftingButton: {fileID: 6363249288086323847}
+  UIPinToggle: {fileID: 6764448723790355889}
+  isPinned: 0
   showPosX: 220
   hidePosX: -600
 --- !u!1 &3642565535705219987

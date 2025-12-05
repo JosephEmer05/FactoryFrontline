@@ -12,6 +12,8 @@ public class TowerCraftingManager : MonoBehaviour
     [SerializeField] private UICraftingSlot coreSlotUI;
     [SerializeField] private UICraftingSlot baseSlotUI;
 
+    [SerializeField] private PanelController panelController;
+
     [Header("Output Config")]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform packageHolder;
@@ -73,6 +75,11 @@ public class TowerCraftingManager : MonoBehaviour
             GameObject spawnedItem = Instantiate(packagePrefab, spawnPoint.position, Quaternion.identity, packageHolder);
             PackageInstance instance = spawnedItem.GetComponent<PackageInstance>();
             instance.conveyor = packageConveyor;
+
+            if (!panelController.isPinned)
+            {
+                panelController.TogglePanel();
+            }
 
             // !! Debug
             Debug.Log("Successfully crafted: " + packagePrefab);
